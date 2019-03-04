@@ -1,0 +1,324 @@
+{
+  "hotelChains": [
+    {
+      "id": 1,
+      "name":"Four Points",
+      "category": "Travel",
+      "numberOfHotels": 2
+    },
+    {
+      "id": 2,
+      "name":"Coast Hotels",
+      "category": "Resort",
+      "numberOfHotels": 2
+    },
+    {
+      "id": 3,
+      "name":"Four Seasons Hotels and Resorts",
+      "category": "Travel",
+      "numberOfHotels": 2
+    },
+    {
+      "id": 4,
+      "name":"Red Roof Inn",
+      "category": "Inn",
+      "numberOfHotels": 2
+    },
+    {
+      "id": 5,
+      "name":"Prince Hotels",
+      "category": "Travel",
+      "numberOfHotels": 2
+    }
+  ],
+  "hotelChainAddress":[
+    {
+      "id":1,
+      "hotelChainID":1,
+      "streetAddress": "646 Tago Street",
+      "city": "Toronto",
+      "province": "Ontario",
+      "postalCode": "Y6TY5F"
+    },
+    {
+      "id":2,
+      "hotelChainID":2,
+      "streetAddress": "6398 Bay Street",
+      "city": "Toronto",
+      "province": "Ontario",
+      "postalCode": "Y6W9U5"
+    },
+    {
+      "id":3,
+      "hotelChainID":3,
+      "streetAddress": "129 Yonge Street",
+      "city": "Toronto",
+      "province": "Ontario",
+      "postalCode": "G2Q9A4"
+    },
+    {
+      "id":4,
+      "hotelChainID":4,
+      "streetAddress": "234 Charlotte Street",
+      "city": "Toronto",
+      "province": "Montreal",
+      "postalCode": "Quebec"
+    },
+    {
+      "id":5,
+      "hotelChainID":5,
+      "streetAddress": "555 Mongo Street",
+      "city": "Vancouver",
+      "province": "British Columbia",
+      "postalCode": "J1G6Y1"
+    }
+  ],
+  "hotels": [
+    {
+      "id": 1,
+      "hotelChainID": 1,
+      "name": "Four Points Ottawa",
+      "category": "Travel",
+      "roomCount": 20,
+      "email": "fpottawa@fourpoints.ca",
+      "managerSIN": "000000000",
+      "phoneNumber": "00000000000",
+      "streetAddress": "555 Legget Drive",
+      "city":"Ottawa",
+      "province": "Ontario",
+      "postalCode": "K1L8G6"
+    },
+    {
+      "id": 2,
+      "hotelChainID": 1,
+      "name": "Four Points Toronto",
+      "category": "Travel",
+      "roomCount": 30,
+      "email": "fptoronto@fourpoints.ca",
+      "managerSIN": "000000001",
+      "phoneNumber": "00000000001",
+      "streetAddress": "767 Bay Street",
+      "city":"Toronto",
+      "province": "Ontario",
+      "postalCode": "T1LO9Q"
+    },
+    {
+      "id": 3,
+      "hotelChainID": 2,
+      "name": "Coast Luca",
+      "category": "Resort",
+      "roomCount": 100,
+      "email": "coastluca@coasthotels.com",
+      "managerSIN": "000000002",
+      "phoneNumber": "78686906858",
+      "streetAddress": "347 Mamoa Street",
+      "city":"Vancouver",
+      "province": "British Columbia",
+      "postalCode": "V5R7R5"
+    },
+    {
+      "id": 4,
+      "hotelChainID": 2,
+      "name": "Coast Rami",
+      "category": "Resort",
+      "roomCount": 100,
+      "email": "coastrami@coastresort.com",
+      "managerSIN": "000000003",
+      "phoneNumber": "68541908643",
+      "streetAddress": "431 Maxwell Avenue",
+      "city":"Toronto",
+      "province": "Ontario",
+      "postalCode": "L8K7K7"
+    },
+    {
+      "id": 5,
+      "hotelChainID": 3,
+      "name": "Toronto Seasons",
+      "category": "Travel",
+      "roomCount": 500,
+      "email": "ts@fshr.com",
+      "managerSIN": "000000004",
+      "phoneNumber": "123862940",
+      "streetAddress": "215 Rami Street",
+      "city":"Toronto",
+      "province": "Ontario",
+      "postalCode": "T7Y6R2"
+    },
+    {
+      "id": 6,
+      "hotelChainID": 3,
+      "name": "Vaughn Seasons",
+      "category": "Travel",
+      "roomCount": 250,
+      "email": "vs@fshr.com",
+      "managerSIN": "000000005",
+      "phoneNumber": "5707526370",
+      "streetAddress": "577 Goon street",
+      "city":"Vaughn",
+      "province": "Ontario",
+      "postalCode": "V7Y8U8"
+    },
+    {
+      "id": 7,
+      "hotelChainID": 4,
+      "name": "Red Roof Inn Montreal",
+      "category": "Inn",
+      "roomCount": 800,
+      "email": "rfim@rfi.ca",
+      "managerSIN": "000000006",
+      "phoneNumber": "64930316792",
+      "streetAddress": "534 La course Avenue",
+      "city":"Montreal",
+      "province": "Quebec",
+      "postalCode": "Q6SW2Q"
+    },
+    {
+      "id": 8,
+      "hotelChainID": 4,
+      "name": "Red Roof Inn Toronto",
+      "category": "Inn",
+      "roomCount": 950,
+      "email": "rfit@rfi.com",
+      "managerSIN": "000000007",
+      "phoneNumber": "58279427948",
+      "streetAddress": "444 Wiley Street",
+      "city":"Toronto",
+      "province": "Ontario",
+      "postalCode": "T6Y7U9"
+    },
+    {
+      "id": 9,
+      "hotelChainID": 5,
+      "name": "Prince Hotels Toronto",
+      "category": "Travel",
+      "roomCount": 200,
+      "email": "pht@ph.com",
+      "managerSIN": "000000008",
+      "phoneNumber": "28350215846",
+      "streetAddress": "111 Rose Avenue",
+      "city":"Toronto",
+      "province": "Ontario",
+      "postalCode": "K1L8L2"
+    },
+    {
+      "id": 10,
+      "hotelChainID": 5,
+      "name": "Prince Hotels Vancouver",
+      "category": "Travel",
+      "roomCount": 400,
+      "email": "phv@ph.con",
+      "managerSIN": "000000008",
+      "phoneNumber": "44283684207",
+      "streetAddress": "456 Tago Street",
+      "city":"Vancouver",
+      "province": "British Columbia",
+      "postalCode": "K8PU4A"
+    }
+  ],
+  "employees": [
+    {
+      "SIN":"000000000",
+      "name": "Lionel Messi",
+      "hotelID": 1,
+      "position": "Manager",
+      "streetAddress": "",
+      "city": "",
+      "province": "",
+      "postalCode": ""
+    },
+    {
+      "SIN":"000000001",
+      "name": "Anthony Martial",
+      "hotelID": 2,
+      "position": "Manager",
+      "streetAddress": "",
+      "city": "",
+      "province": "",
+      "postalCode": ""
+    },
+    {
+      "SIN":"000000002",
+      "name": "Marcus Rashford",
+      "hotelID": 3,
+      "position": "Manager",
+      "streetAddress": "",
+      "city": "",
+      "province": "",
+      "postalCode": ""
+    },
+    {
+      "SIN":"000000003",
+      "name": "Paul Pogba",
+      "hotelID": 4,
+      "position": "Manager",
+      "streetAddress": "",
+      "city": "",
+      "province": "",
+      "postalCode": ""
+    },
+    {
+      "SIN":"000000004",
+      "name": "Jesse Lingard",
+      "hotelID": 5,
+      "position": "Manager",
+      "streetAddress": "",
+      "city": "",
+      "province": "",
+      "postalCode": ""
+    }
+  ],
+  "hotelChainEmail": [
+    {
+      "id": 1,
+      "hotelChainID":1,
+      "email": "info@fourpoints.com"
+    },
+    {
+      "id": 2,
+      "hotelChainID":2,
+      "email": "info@coasthotels.com"
+    },
+    {
+      "id": 3,
+      "hotelChainID":3,
+      "email": "info@fshr.com"
+    },
+    {
+      "id": 4,
+      "hotelChainID":4,
+      "email": "info@rfi.com"
+    },
+    {
+      "id": 5,
+      "hotelChainID":5,
+      "email": "info@ph.com"
+    }
+  ],
+  "hotelChainPhoneNumber": [
+    {
+      "id": 1,
+      "hotelChainID":1,
+      "phoneNumber": "37503649571"
+    },
+    {
+      "id": 2,
+      "hotelChainID":2,
+      "phoneNumber": "56204689217"
+    },
+    {
+      "id": 3,
+      "hotelChainID":3,
+      "phoneNumber": "82438591537"
+    },
+    {
+      "id": 4,
+      "hotelChainID":4,
+      "phoneNumber": "19442964816"
+    },
+    {
+      "id": 5,
+      "hotelChainID":5,
+      "phoneNumber": "36502634816"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+out/
+.idea/
+src/main/kotlin/EHotels.db
+.gradle/

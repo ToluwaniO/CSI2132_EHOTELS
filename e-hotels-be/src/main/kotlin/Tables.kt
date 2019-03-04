@@ -9,7 +9,7 @@ object HotelChain: Table() {
 
 object Hotel: Table() {
     val id = integer("id").autoIncrement().primaryKey()
-    val hotelChainId = integer("hotelChainId") references HotelChain.id
+    val hotelChainID = integer("hotelChainID") references HotelChain.id
     val name = varchar("name", 100)
     val category = varchar("category", 100)
     val roomCount = integer("roomCount")
@@ -23,7 +23,7 @@ object Hotel: Table() {
 }
 
 object Employee: Table() {
-    val SIN = varchar("SIN", 9).autoIncrement().primaryKey()
+    val SIN = varchar("SIN", 9).primaryKey()
     val name = varchar("name", 100)
     val hotelID = integer("hotelId") references Hotel.id
     val position = varchar("position", 100)

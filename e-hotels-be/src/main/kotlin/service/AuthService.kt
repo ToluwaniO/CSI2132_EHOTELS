@@ -13,7 +13,12 @@ import java.sql.Connection
 
 class AuthService(val req: Request) {
     fun signIn(email: String, password: String): Response? {
-
+        val sessionUser = req.session().attribute<String>("user")
+        if (sessionUser == email) {
+            return Response("User is already signed in")
+        } else if (sessionUser != null) {
+            req.session().invalidate()
+        }
         val resp =transaction(Connection.TRANSACTION_SERIALIZABLE, 0) {
             val customers = Customer.select {
                 Customer.email eq email
@@ -28,10 +33,10 @@ class AuthService(val req: Request) {
             }
             req.session().attribute("user", user[Customer.email])
             return@transaction Response(
-                data = user.toJSON("Customer")
+                data = getCustomer(email).toJSON()
             )
         }
-        return Response()
+        return resp
     }
 
     fun signUp(data: Map<String, String>): Response {
@@ -64,8 +69,8 @@ class AuthService(val req: Request) {
 
     fun getCustomer(email: String, showPassword: Boolean = false): Map<String, Any?>? {
         val resp = transaction(Connection.TRANSACTION_SERIALIZABLE, 0) {
-            val slice = arrayListOf(Customer.SIN, Customer.name, Customer.email, Customer.password,
-                Customer.streetAddress, Customer.city, Customer.province, Customer.postalCode)
+            val slice = arrayListOf(Customer.SIN, Customer.name, Customer.email, Customer.streetAddress, Customer.city,
+                Customer.province, Customer.postalCode)
             if (showPassword) {
                 slice.add(Customer.password)
             }

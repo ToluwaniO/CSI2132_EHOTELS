@@ -32,16 +32,17 @@ fun main(args: Array<String>) {
     get("/signUp") { req, res ->
         val map = req.map<String, String>()
         val response = AuthService(req).signUp(map)
-        response.toString()
+        response.toJSON()
     }
     get("/currentUser") { req, res ->
         val email = req.session().attribute<String>("user")
-            ?: return@get Response(error = HotelsError("No one is signed in"))
+            ?: return@get Response(error = HotelsError("No one is signed in")).toJSON()
         val user = AuthService(req).getCustomer(email)
-        return@get Response(user.toJSON())
+        return@get Response(user.toJSON()).toJSON()
     }
     get("/signOut") { req, res ->
         req.session().invalidate()
+        Response("User has been successfully signed out").toJSON()
     }
 }
 

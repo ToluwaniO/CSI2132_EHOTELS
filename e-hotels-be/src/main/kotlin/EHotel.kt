@@ -1,4 +1,6 @@
 import org.jetbrains.exposed.sql.Database
+import service.AuthService
+import spark.Request
 import spark.Spark.*
 import java.io.File
 
@@ -17,4 +19,32 @@ fun main(args: Array<String>) {
     get("/hello") { req, res ->
         "Hello world!"
     }
+    get("/signIn") { req, res ->
+        println("hii")
+        val email = req.get<String, String>("email")
+        val password = req.get<String, String>("password")
+        if (email == null || password == null) {
+            return@get Response(error = HotelsError()).toJSON()
+        }
+        val response = AuthService(req).signIn(email, password)
+        response.toJSON()
+    }
+    get("/signUp") { req, res ->
+        val map = req.map<String, String>()
+        val response = AuthService(req).signUp(map)
+        response.toString()
+    }
+    get("/currentUser") { req, res ->
+        val email = req.session().attribute<String>("user")
+            ?: return@get Response(error = HotelsError("No one is signed in"))
+        val user = AuthService(req).getCustomer(email)
+        return@get Response(user.toJSON())
+    }
+    get("/signOut") { req, res ->
+        req.session().invalidate()
+    }
+}
+
+fun getReqMap(req: Request): Map<String, Any> {
+    return req.queryMap().toMap()
 }

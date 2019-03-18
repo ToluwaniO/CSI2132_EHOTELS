@@ -1,0 +1,1 @@
+data class Response(val data: String? = null, val error: HotelsError? = null)

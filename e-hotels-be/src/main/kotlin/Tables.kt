@@ -42,12 +42,14 @@ object Room: Table() {
 
 object Customer: Table() {
     val SIN = varchar("SIN", 9).primaryKey()
+    val email = varchar("email", 30).primaryKey()
+    val password = varchar("password", 16)
     val name = varchar("name", 100)
     val registrationDate = date("registrationDate")
-    val streetAddress = varchar("streetAddress", 100)
-    val city = varchar("city", 20)
-    val province = varchar("province", 20)
-    val postalCode = varchar("postalCode", 6)
+    val streetAddress = varchar("streetAddress", 100).nullable()
+    val city = varchar("city", 20).nullable()
+    val province = varchar("province", 20).nullable()
+    val postalCode = varchar("postalCode", 6).nullable()
 }
 
 object Booking: Table() {

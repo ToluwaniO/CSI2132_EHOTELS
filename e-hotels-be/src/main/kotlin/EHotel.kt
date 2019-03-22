@@ -1,11 +1,12 @@
 import org.jetbrains.exposed.sql.Database
 import service.AuthService
+import service.HotelService
 import spark.Request
 import spark.Spark.*
 import java.io.File
 
 
-fun main(args: Array<String>) {
+fun main() {
     val cwd = System.getProperty("user.dir");
     val dbPath = "$cwd\\src\\main\\kotlin\\EHotels.db"
     val dbFile = File(dbPath)
@@ -20,7 +21,6 @@ fun main(args: Array<String>) {
         "Hello world!"
     }
     get("/signIn") { req, res ->
-        println("hii")
         val email = req.get<String, String>("email")
         val password = req.get<String, String>("password")
         if (email == null || password == null) {
@@ -38,14 +38,41 @@ fun main(args: Array<String>) {
         val email = req.session().attribute<String>("user")
             ?: return@get Response(error = HotelsError("No one is signed in")).toJSON()
         val user = AuthService(req).getCustomer(email)
-        return@get Response(user.toJSON()).toJSON()
+        return@get Response(user).toJSON()
     }
     get("/signOut") { req, res ->
         req.session().invalidate()
         Response("User has been successfully signed out").toJSON()
     }
-}
-
-fun getReqMap(req: Request): Map<String, Any> {
-    return req.queryMap().toMap()
+    get("/hotels") { req, res ->
+        HotelService(req).getHotels().toJSON()
+    }
+    get("/hotel/:id") { req, res ->
+        val id = req.params("id").toIntOrNull()
+        if (id == null) {
+            return@get Response(error = HotelsError("Hotel id is invalid or does not exist")).toJSON()
+        }
+        HotelService(req).getHotelById(id).toJSON()
+    }
+    get("/rooms/:hotelId") { req, res ->
+        val id = req.params("hotelId").toIntOrNull()
+        if (id == null) {
+            return@get Response(error = HotelsError("Hotel id is invalid or does not exist")).toJSON()
+        }
+        HotelService(req).getRoomsByHotel(id).toJSON()
+    }
+    get("/bookRoom") { req, res ->
+        val data = req.map<String, Any?>()
+        if (data.isEmpty()) {
+            return@get Response(error = HotelsError("Invalid request body")).toJSON()
+        }
+        HotelService(req).bookRoom(req.body().to()).toJSON()
+    }
+    get("/bookingToRental") { req, res ->
+        val data = req.map<String, String>()
+        if (data.isEmpty()) {
+            return@get Response(error = HotelsError("Invalid request body")).toJSON()
+        }
+        HotelService(req).bookingToRental(data).toJSON()
+    }
 }

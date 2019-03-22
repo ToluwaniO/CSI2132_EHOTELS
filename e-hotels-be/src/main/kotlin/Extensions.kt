@@ -1,8 +1,11 @@
+import adapter.DateTimeAdapter
 import com.google.gson.Gson
-import org.jetbrains.exposed.sql.Query
-import org.jetbrains.exposed.sql.ResultRow
-import org.jetbrains.exposed.sql.Table
+import com.google.gson.GsonBuilder
+import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.transactions.transaction
+import org.joda.time.DateTime
 import spark.Request
+import java.sql.Connection
 
 //fun Customer.toMap() = mapOf<String, Any>(
 //    "SIN" to SIN.name,
@@ -28,24 +31,43 @@ fun <T> T.toJSON(): String {
     return Gson().toJson(this)
 }
 
-fun ResultRow.toMap(tableName: String): Map<String, Any?> {
-    val table = getTable(tableName)
-    val columns = table.columns
+inline fun <reified T> ResultRow.to(tableNames: List<Table>): T {
+    return Gson().fromJson<T>(toJSON(tableNames), T::class.java)
+}
+
+inline fun <reified T> String.to(): T {
+    return Gson().fromJson<T>(this, T::class.java)
+}
+
+fun ResultRow.toMap(tableNames: List<Table>): Map<String, Any?> {
     val map = HashMap<String, Any?>()
-    for (column in columns) {
-        map[column.name] = this.tryGet(column)
+    for (table in tableNames) {
+        val columns = table.columns
+        for (column in columns) {
+            if (table == tableNames[0]) {
+                map[column.name] = this.tryGet(column)
+            } else {
+                map["${table.tableName}_${column.name}"] = this.tryGet(column)
+            }
+        }
     }
     return map
 }
 
-fun ResultRow.toJSON(tableName: String): String {
-    val map = toMap(tableName)
-    return Gson().toJson(map)
+fun ResultRow.toJSON(tableNames: List<Table>): String {
+    val map = toMap(tableNames)
+    val gson = GsonBuilder()
+        .registerTypeAdapter(DateTime::class.java, DateTimeAdapter())
+        .create()
+    return gson.toJson(map)
 }
 
 fun getTable(name: String): Table {
     return when (name) {
         "Customer" -> Customer
+        "Booking" -> Room
+        "HotelChain" -> HotelChain
+        "Rental" -> Rental
         else -> Hotel
     }
 }
@@ -67,4 +89,16 @@ fun Query.toArrayList(): ArrayList<ResultRow> {
         list.add(it)
     }
     return list
+}
+
+fun <T> query(retries: Int = 0, statement: () -> T): T? {
+    return transaction(Connection.TRANSACTION_SERIALIZABLE, retries) {
+        addLogger(StdOutSqlLogger)
+        try {
+            statement()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
 }

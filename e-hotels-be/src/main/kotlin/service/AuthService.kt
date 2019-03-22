@@ -7,8 +7,10 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
 import spark.Request
 import toJSON
-import toMap
 import validateMap
+import Customer
+import query
+import to
 import java.sql.Connection
 
 class AuthService(val req: Request) {
@@ -19,21 +21,21 @@ class AuthService(val req: Request) {
         } else if (sessionUser != null) {
             req.session().invalidate()
         }
-        val resp =transaction(Connection.TRANSACTION_SERIALIZABLE, 0) {
+        val resp =query {
             val customers = Customer.select {
                 Customer.email eq email
             }.toList()
             println(customers)
             if (customers.isEmpty()) {
-                return@transaction Response(error = HotelsError("This email does not exist"))
+                return@query Response(error = HotelsError("This email does not exist"))
             }
             val user = customers[0]
             if (user[Customer.password] != password) {
-                return@transaction Response(error = HotelsError("Password incorrect"))
+                return@query Response(error = HotelsError("Password incorrect"))
             }
             req.session().attribute("user", user[Customer.email])
-            return@transaction Response(
-                data = getCustomer(email).toJSON()
+            return@query Response(
+                data = getCustomer(email)
             )
         }
         return resp
@@ -43,11 +45,10 @@ class AuthService(val req: Request) {
         if (!Customer.validateMap(data)) {
             return Response(error = HotelsError("Invalid data"))
         }
-        val resp = transaction(Connection.TRANSACTION_SERIALIZABLE, 0) {
-            addLogger(StdOutSqlLogger)
+        val resp = query {
             val prevUser = getCustomer(data["email"]!!)
             if (prevUser != null) {
-                return@transaction Response(error = HotelsError("This user already exists"))
+                return@query Response(error = HotelsError("This user already exists"))
             }
             val email = Customer.insert {
                 it[SIN] = "${System.currentTimeMillis()}".substring(0,9)
@@ -60,17 +61,17 @@ class AuthService(val req: Request) {
                 it[province] = data["province"] ?: throw Exception("")
                 it[postalCode] = data["postalCode"] ?: throw Exception("")
             }
-            val user = getCustomer(data["email"]!!) ?: return@transaction Response(error = HotelsError())
-            req.session().attribute("user", user["email"])
-            return@transaction Response(user.toJSON())
+            val user = getCustomer(data["email"]!!) ?: return@query Response(error = HotelsError())
+            req.session().attribute("user", user.email)
+            return@query Response(user.toJSON())
         }
-        return resp
+        return resp ?: Response(error = HotelsError("An error occurred"))
     }
 
-    fun getCustomer(email: String, showPassword: Boolean = false): Map<String, Any?>? {
-        val resp = transaction(Connection.TRANSACTION_SERIALIZABLE, 0) {
+    fun getCustomer(email: String, showPassword: Boolean = false): model.Customer? {
+        val resp = query {
             val slice = arrayListOf(Customer.SIN, Customer.name, Customer.email, Customer.streetAddress, Customer.city,
-                Customer.province, Customer.postalCode)
+                Customer.province, Customer.postalCode, Customer.registrationDate)
             if (showPassword) {
                 slice.add(Customer.password)
             }
@@ -78,10 +79,24 @@ class AuthService(val req: Request) {
                 Customer.email eq email
             }.toList()
             if (users.isEmpty()) {
-                return@transaction null
+                return@query null
             }
-            return@transaction users[0].toMap("Customer")
+            return@query users[0].to<model.Customer>(listOf(Customer))
         }
         return resp
+    }
+
+    fun isSignedIn(SIN: String): Boolean {
+        val resp = query {
+            val slice = arrayListOf(Customer.SIN, Customer.name, Customer.email)
+            val users = Customer.slice(slice).select {
+                Customer.SIN eq SIN
+            }.toList()
+            if (users.isEmpty()) {
+                return@query null
+            }
+            return@query users[0].to<model.Customer>(listOf(Customer))
+        }
+        return resp?.SIN == SIN
     }
 }

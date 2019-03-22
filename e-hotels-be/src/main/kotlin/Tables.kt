@@ -63,12 +63,14 @@ object Booking: Table() {
 
 object Rental: Table() {
     val id = integer("id").autoIncrement().primaryKey()
-    val hotelName = varchar("hotelName", 100)
-    val hotelAddress = varchar("hotelAddress", 100)
+    val hotelID = integer("hotelID") references Hotel.id
+//    val hotelName = varchar("hotelName", 100)
+//    val hotelAddress = varchar("hotelAddress", 100)
     val roomNumber = varchar("roomNumber", 10)
     val startTime = datetime("startTime")
     val endTime = datetime("endTime")
     val employeeSIN = varchar("employeeSIN", 9) references Employee.SIN
+    val customerSIN = varchar("customerSIN", 9) references Customer.SIN
     val bookingID = (integer("bookingID") references Booking.id).nullable()
 }
 

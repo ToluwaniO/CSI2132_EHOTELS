@@ -1,1 +1,1 @@
-data class Response(val data: String? = null, val error: HotelsError? = null)
+data class Response(val data: Any? = null, val error: HotelsError? = null)

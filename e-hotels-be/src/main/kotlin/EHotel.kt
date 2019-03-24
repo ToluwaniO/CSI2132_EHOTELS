@@ -20,16 +20,16 @@ fun main() {
     get("/hello") { req, res ->
         "Hello world!"
     }
-    get("/signIn") { req, res ->
+    post("/signIn") { req, res ->
         val email = req.get<String, String>("email")
         val password = req.get<String, String>("password")
         if (email == null || password == null) {
-            return@get Response(error = HotelsError()).toJSON()
+            return@post Response(error = HotelsError()).toJSON()
         }
         val response = AuthService(req).signIn(email, password)
         response.toJSON()
     }
-    get("/signUp") { req, res ->
+    post("/signUp") { req, res ->
         val map = req.map<String, String>()
         val response = AuthService(req).signUp(map)
         response.toJSON()
@@ -40,7 +40,7 @@ fun main() {
         val user = AuthService(req).getCustomer(email)
         return@get Response(user).toJSON()
     }
-    get("/signOut") { req, res ->
+    post("/signOut") { req, res ->
         req.session().invalidate()
         Response("User has been successfully signed out").toJSON()
     }
@@ -61,17 +61,17 @@ fun main() {
         }
         HotelService(req).getRoomsByHotel(id).toJSON()
     }
-    get("/bookRoom") { req, res ->
+    post("/bookRoom") { req, res ->
         val data = req.map<String, Any?>()
         if (data.isEmpty()) {
-            return@get Response(error = HotelsError("Invalid request body")).toJSON()
+            return@post Response(error = HotelsError("Invalid request body")).toJSON()
         }
         HotelService(req).bookRoom(req.body().to()).toJSON()
     }
-    get("/bookingToRental") { req, res ->
+    post("/bookingToRental") { req, res ->
         val data = req.map<String, String>()
         if (data.isEmpty()) {
-            return@get Response(error = HotelsError("Invalid request body")).toJSON()
+            return@post Response(error = HotelsError("Invalid request body")).toJSON()
         }
         HotelService(req).bookingToRental(data).toJSON()
     }

@@ -156,10 +156,22 @@ class HotelService(val req: Request) {
         return s
     }
 
-    fun roomsAvailable(hotelID: Int, startTime: Long?, endTime: Long?): List<model.Room> {
+    fun availableRoomsInCriteria(map: Map<String, Any?>): Response {
+        val rooms = roomsAvailable(
+            map["hotelID"]?.toString()?.toDouble()?.toInt(),
+            map["startTime"]?.toString()?.toDouble()?.toLong(),
+            map["endTime"]?.toString()?.toDouble()?.toLong()
+        )
+        return Response(rooms)
+    }
+
+    fun roomsAvailable(hotelID: Int?, startTime: Long?, endTime: Long?): List<model.Room> {
         val rooms = query {
-            val q = Booking.select {
-                Booking.hotelID eq hotelID
+            val q = Booking.selectAll()
+            hotelID?.let {
+                q.andWhere {
+                    Booking.hotelID eq it
+                }
             }
             startTime?.let {
                 q.andWhere {
@@ -178,18 +190,19 @@ class HotelService(val req: Request) {
                 bookings.add(book.hotelID to book.roomNumber)
             }
 
-            Room.select {
-                Room.hotelID eq hotelID
+            val r = Room.selectAll()
+            hotelID?.let {
+                r.andWhere {
+                    Room.hotelID eq it
+                }
             }
-            .toList()
+            r.toList()
             .filter {
                 val room = it.to<model.Room>(listOf(Room))
                 !bookings.contains(room.hotelID to room.roomNumber)
-            }
-            .map {
+            }.map {
                 it.to<model.Room>(listOf(Room))
-            }
-            .toList()
+            }.toList()
         }
         return rooms ?: emptyList()
     }

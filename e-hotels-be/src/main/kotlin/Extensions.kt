@@ -23,6 +23,9 @@ fun <K, V> Request.get(key: K, mapName: String? = null): V? {
 }
 
 fun <K, V> Request.map(): Map<K, V> {
+    if (body().isBlank()) {
+        return mapOf()
+    }
     return body().toMap()
 }
 

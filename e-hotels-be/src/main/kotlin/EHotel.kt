@@ -75,4 +75,8 @@ fun main() {
         }
         HotelService(req).bookingToRental(data).toJSON()
     }
+    get("/rooms") { req, res ->
+        val data = req.map<String, String>()
+        HotelService(req).availableRoomsInCriteria(data).toJSON()
+    }
 }

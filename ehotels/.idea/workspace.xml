@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d619e79e-22f4-4620-a721-66eb610ac9a6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ehotels/src/Forms/CustomerForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/Forms/HotelChainForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/Forms/HotelForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/Forms/PaymentForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/Forms/RentalBookingForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/Forms/RoomForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/Forms/SearchForm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/LandingPages/CustomerPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/LandingPages/DeletePage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/LandingPages/EmployeePage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/LandingPages/HomePage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/Views/BookingView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/Views/RoomView.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/edit-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ehotels/src/trash-alt-regular.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ehotels/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/ehotels/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ehotels/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/ehotels/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ehotels/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/ehotels/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ehotels/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/ehotels/src/index.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ehotels/src/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="35" column="46" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ehotels/src/Forms/PaymentForm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ehotels/src/LandingPages/DeletePage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="21" column="55" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ehotels/src/LandingPages/EmployeePage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="675">
+              <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/ehotels" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/ehotels/src/Person.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/Customer.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/HotelChainForm.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/Forms/HotelChainForm.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/Forms/HotelForm.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/SearchForm.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/Forms/BookingSearchForm.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/Forms/SearchForm.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/App.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/LandingPages/HomePage.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/Forms/CustomerForm.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/LandingPages/EmployeePage.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/LandingPages/CustomerPage.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/Forms/RoomForm.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/Views/RoomView.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/Forms/RentalBookingForm.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/Views/BookingView.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/Forms/PaymentForm.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/index.js" />
+        <option value="$PROJECT_DIR$/ehotels/src/LandingPages/DeletePage.js" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="23" />
+    <option name="width" value="1024" />
+    <option name="height" value="617" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ehotels" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ehotels" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ehotels" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ehotels" type="462c0819:PsiDirectoryNode" />
+              <item name="ehotels" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ehotels" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ehotels" type="462c0819:PsiDirectoryNode" />
+              <item name="ehotels" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ehotels" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ehotels" type="462c0819:PsiDirectoryNode" />
+              <item name="ehotels" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Forms" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ehotels" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ehotels" type="462c0819:PsiDirectoryNode" />
+              <item name="ehotels" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LandingPages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ehotels" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ehotels" type="462c0819:PsiDirectoryNode" />
+              <item name="ehotels" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Views" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JavaScript" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ehotels/src" />
+      <recent name="$PROJECT_DIR$/ehotels/src/Forms" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/ehotels/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d619e79e-22f4-4620-a721-66eb610ac9a6" name="Default Changelist" comment="" />
+      <created>1551203242111</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1551203242111</updated>
+      <workItem from="1551203243834" duration="242000" />
+      <workItem from="1551203615551" duration="1566000" />
+      <workItem from="1553177521115" duration="166000" />
+      <workItem from="1553389703780" duration="40146000" />
+      <workItem from="1553624816556" duration="392000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="42512000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1024" height="640" extended-state="0" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6080402" visible="true" weight="0.24925224" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" sideWeight="0.3919598" side_tool="true" weight="0.24925224" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32761905" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3295238" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.23157895" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ehotels/src/Person.js" />
+    <entry file="file://$PROJECT_DIR$/ehotels/src/App.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/serviceWorker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/Forms/HotelForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-255">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="16" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/Forms/HotelChainForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-653">
+          <caret line="16" column="5" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="16" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/logo.svg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/Forms/BookingSearchForm.js" />
+    <entry file="file://$PROJECT_DIR$/ehotels/src/Forms/SearchForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/LandingPages/HomePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-294">
+          <caret line="2" selection-start-line="2" selection-end-line="13" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/LandingPages/CustomerPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/Forms/RoomForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="48" column="9" lean-forward="true" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/Forms/RentalBookingForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="79" column="18" selection-start-line="79" selection-start-column="18" selection-end-line="79" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/Views/RoomView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="8" column="54" lean-forward="true" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/Views/BookingView.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-111">
+          <caret line="24" column="27" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/Forms/CustomerForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="39" lean-forward="true" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="35" column="46" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/Forms/PaymentForm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="8" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/LandingPages/EmployeePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ehotels/src/LandingPages/DeletePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="21" column="55" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

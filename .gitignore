@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+e-hotels-be/.gradle
+e-hotels-be/.idea
+e-hotels-be/out
+e-hotels-be/gradle
+ehotels-fe/node_modules

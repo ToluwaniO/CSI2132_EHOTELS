@@ -29,7 +29,7 @@ class RoomForm extends React.Component{
         const capacity = document.getElementById("capacity").value
         const pricePerNight = document.getElementById("pricePerNight").value
         const obj = "{" +
-            "\"hotelId\":\""+hotelId+"\","+
+            "\"hotelID\":\""+hotelId+"\","+
             "\"roomNumber\":\""+roomNumber+"\","+
             "\"capacity\":\""+capacity+"\","+
             "\"pricePerNight\":\""+pricePerNight+"\"}"

@@ -29,9 +29,9 @@ class HotelChainForm extends React.Component{
 
 
         const obj = "{" +
-            "\"hotelChainId\":\""+hotelChainId+"\","+
-            "\"hotelChainName\":\""+hotelChainName+"\","+
-            "\"hotelChainCategory\":\""+hotelChainCategory+"\"}"
+            "\"id\":\""+hotelChainId+"\","+
+            "\"name\":\""+hotelChainName+"\","+
+            "\"category\":\""+hotelChainCategory+"\"}"
         console.log(obj)
         console.log(service)
         const xhr = new XMLHttpRequest()

@@ -37,20 +37,20 @@ class HotelForm extends React.Component{
         const hotelPostalCode = document.getElementById("hotelPostalCode").value
 
         const obj = "{" +
-            "\"hotelId\":\""+hotelId+"\","+
-            "\"hotelChainId\":\""+hotelChainId+"\","+
-            "\"hotelName\":\""+hotelName+"\","+
-            "\"hotelCategory\":\""+hotelCategory+"\","+
-            "\"hotelRoomCount\":\""+hotelRoomCount+"\","+
-            "\"hotelEmail\":\""+hotelEmail+"\","+
-            "\"hotelManagerSIN\":\""+hotelManagerSIN+"\","+
-            "\"hotelPhoneNumber\":\""+hotelPhoneNumber+"\","+
-            "\"hotelStreetAddress\":\""+hotelStreetAddress+"\","+
-            "\"hotelCity\":\""+hotelCity+"\","+
-            "\"hotelProvince\":\""+hotelProvince+"\","+
-            "\"hotelPostalCode\":\""+hotelPostalCode+"\"}"
-        console.log(obj)
-        console.log(service)
+            "\"id\":\""+hotelId+"\","+
+            "\"hotelChainID\":\""+hotelChainId+"\","+
+            "\"name\":\""+hotelName+"\","+
+            "\"category\":\""+hotelCategory+"\","+
+            "\"roomCount\":\""+hotelRoomCount+"\","+
+            "\"email\":\""+hotelEmail+"\","+
+            "\"managerSIN\":\""+hotelManagerSIN+"\","+
+            "\"phoneNumber\":\""+hotelPhoneNumber+"\","+
+            "\"streetAddress\":\""+hotelStreetAddress+"\","+
+            "\"city\":\""+hotelCity+"\","+
+            "\"province\":\""+hotelProvince+"\","+
+            "\"postalCode\":\""+hotelPostalCode+"\"}";
+        console.log(obj);
+        console.log(service);
         const xhr = new XMLHttpRequest()
         xhr.open('POST', '/server', true)
         xhr.send(obj)

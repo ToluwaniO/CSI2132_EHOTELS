@@ -31,15 +31,15 @@ class CustomerForm extends React.Component{
         const province = document.getElementById("province").value
         const postalCode = document.getElementById("postalCode").value
         const obj = "{" +
-            "\"sin\":\""+sin+"\","+
-            "\"firstname\":\""+firstname+"\","+
-            "\"lastname\":\""+lastname+"\","+
+            "\"SIN\":\""+sin+"\","+
+            "\"firstName\":\""+firstname+"\","+
+            "\"lastName\":\""+lastname+"\","+
             "\"registrationDate\":\""+registrationDate+"\","+
             "\"streetAddress\":\""+streetAddress+"\","+
             "\"city\":\""+city+"\","+
             "\"province\":\""+province+"\","+
-            "\"postalCode\":\""+postalCode+"\"}"
-        console.log(obj)
+            "\"postalCode\":\""+postalCode+"\"}";
+        console.log(obj);
         console.log(this.props.service)
         // const xhr = new XMLHttpRequest()
         // xhr.open('POST', '/server', true)

@@ -5,3 +5,5 @@ e-hotels-be/.idea
 e-hotels-be/out
 e-hotels-be/gradle
 ehotels-fe/node_modules
+e-hotels-be/build/
+lib/

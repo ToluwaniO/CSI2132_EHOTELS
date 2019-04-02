@@ -79,4 +79,16 @@ fun main() {
         val data = req.map<String, String>()
         HotelService(req).availableRoomsInCriteria(data).toJSON()
     }
+    post("/addHotel") { req, res ->
+        val data = req.body().to<model.Hotel>()
+        HotelService(req).addHotel(data).toJSON()
+    }
+    post("/addHotelChain") { req, res ->
+        val data = req.body().to<model.HotelChain>()
+        HotelService(req).addHotelChain(data).toJSON()
+    }
+    post("/addRoom") { req, res ->
+        val data = req.body().to<model.Room>()
+        HotelService(req).addRoom(data).toJSON()
+    }
 }

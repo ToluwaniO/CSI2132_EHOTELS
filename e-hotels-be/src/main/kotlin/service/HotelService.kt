@@ -206,4 +206,70 @@ class HotelService(val req: Request) {
         }
         return rooms ?: emptyList()
     }
+
+    fun addHotel(hotel: model.Hotel): Response {
+        val h = query<model.Hotel?> {
+            val rows = Hotel.insert {
+                it[hotelChainID] = hotel.hotelChainID
+                it[name] = hotel.name
+                it[category] = hotel.category
+                it[roomCount] = hotel.roomCount
+                it[email] = hotel.email
+                it[managerSIN] = hotel.managerSIN
+                it[phoneNumber] = hotel.phoneNumber
+                it[streetAddress] = hotel.streetAddress
+                it[city] = hotel.city
+                it[province] = hotel.province
+                it[postalCode] = hotel.postalCode
+            }
+            val results = rows.resultedValues ?: emptyList()
+            if (results.isEmpty()) {
+                return@query null
+            }
+            return@query results[0].to(listOf(Hotel))
+        }
+        if (h == null) {
+            return Response(error=HotelsError("Could not add hotel"))
+        }
+        return Response(h)
+    }
+
+    fun addHotelChain(hotel: model.HotelChain): Response {
+        val h = query<model.Hotel?> {
+            val rows = HotelChain.insert {
+                it[name] = hotel.name
+                it[category] = hotel.category
+                it[numberOfHotels] = hotel.numberOfHotels
+            }
+            val results = rows.resultedValues ?: emptyList()
+            if (results.isEmpty()) {
+                return@query null
+            }
+            return@query results[0].to(listOf(HotelChain))
+        }
+        if (h == null) {
+            return Response(error=HotelsError("Could not add hotel"))
+        }
+        return Response(h)
+    }
+
+    fun addRoom(room: model.Room): Response {
+        val h = query<model.Hotel?> {
+            val rows = Room.insert {
+                it[hotelID] = room.hotelID
+                it[roomNumber] = room.roomNumber
+                it[capacity] = room.capacity
+                it[pricePerNight] = room.pricePerNight
+            }
+            val results = rows.resultedValues ?: emptyList()
+            if (results.isEmpty()) {
+                return@query null
+            }
+            return@query results[0].to(listOf(Room))
+        }
+        if (h == null) {
+            return Response(error=HotelsError("Could not add hotel"))
+        }
+        return Response(h)
+    }
 }

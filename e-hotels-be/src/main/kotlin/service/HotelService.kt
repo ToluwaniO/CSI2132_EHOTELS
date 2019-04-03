@@ -226,7 +226,16 @@ class HotelService(val req: Request) {
             if (results.isEmpty()) {
                 return@query null
             }
-            return@query results[0].to(listOf(Hotel))
+            val result = results[0].to<model.Hotel>(listOf(Hotel))
+            val hotels = Hotel.select {
+                Hotel.id eq result.id
+            }.toList().map {
+                it.to<model.Hotel>(listOf(Hotel))
+            }.toList()
+            if (hotels.isEmpty()) {
+                return@query null
+            }
+            return@query hotels[0]
         }
         if (h == null) {
             return Response(error=HotelsError("Could not add hotel"))

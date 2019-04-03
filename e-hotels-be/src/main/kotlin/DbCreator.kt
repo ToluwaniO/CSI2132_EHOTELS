@@ -2,12 +2,14 @@ import com.google.gson.Gson
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.sql.Connection
+import java.util.*
 
 class DbCreator {
-    fun createDb() = transaction(Connection.TRANSACTION_SERIALIZABLE, 1) {
+    fun createDb(connection: Connection) = transaction(Connection.TRANSACTION_SERIALIZABLE, 1) {
         val data = getDummyData()
         SchemaUtils.create(HotelChain, Hotel, HotelChainAddress, HotelChainEmail, Employee, Customer, Room,
              Rental, Booking, Damage)
+        createTriggers(connection)
         val hotelChains = data["hotelChains"] as List<Map<String, Any>>?
         hotelChains?.forEach { raw ->
             HotelChain.insert {
@@ -88,6 +90,18 @@ class DbCreator {
                 it[hotelChainID] = raw["hotelChainID"].toString().toDouble().toInt()
                 it[phoneNumber] = raw["phoneNumber"] as String
             }
+        }
+    }
+
+    private fun createTriggers(connection: Connection) {
+        try {
+            val triggersFile = DbCreator::class.java.getResource("triggers.sql")
+            val triggers = triggersFile.readText()
+//        println(triggers)
+            val statement = connection.createStatement()
+            statement.execute(triggers)
+        } catch (e: Exception) {
+            println(e.message)
         }
     }
 

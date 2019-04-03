@@ -1,9 +1,12 @@
 import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.name
 import service.AuthService
 import service.HotelService
 import spark.Request
 import spark.Spark.*
 import java.io.File
+import java.sql.Connection
+import java.sql.DriverManager
 
 
 fun main() {
@@ -14,9 +17,11 @@ fun main() {
         println("File exists")
         dbFile.delete()
     }
-    Database.connect("jdbc:sqlite:$dbPath", driver = "org.sqlite.JDBC", user = "root", password = "password")
+    val db = Database.connect("jdbc:sqlite:$dbPath", driver = "org.sqlite.JDBC", user = "root", password = "password")
+    val connection = connection()
     println("DB file in $dbPath")
-    DbCreator().createDb()
+    DbCreator().createDb(db.connector())
+//    DbCreator().createTriggers(connection())
     get("/hello") { req, res ->
         "Hello world!"
     }
@@ -91,4 +96,12 @@ fun main() {
         val data = req.body().to<model.Room>()
         HotelService(req).addRoom(data).toJSON()
     }
+}
+
+fun connection(): Connection {
+    val cwd = System.getProperty("user.dir");
+    val dbPath = "$cwd\\src\\main\\kotlin\\EHotels.db"
+    val url = "jdbc:sqlite:$dbPath"
+    Class.forName("org.sqlite.JDBC")
+    return DriverManager.getConnection(url, "root", "password");
 }

@@ -33,7 +33,7 @@ class RentalBookingForm extends React.Component{
         const endDate = document.getElementById("endDate").value
         const customerSIN = document.getElementById("customerSIN").value
          obj = "{" +
-             "\"bookingID\":\""+bookingId+"\","
+             "\"bookingId\":\""+bookingId+"\","
             if(this.props.rental){
                 const rentalId = document.getElementById("rentalId").value
                 obj = obj + "rentalId\":\""+rentalId+"\","

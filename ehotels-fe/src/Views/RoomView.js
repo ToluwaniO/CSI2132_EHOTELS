@@ -4,17 +4,38 @@ import {Link} from "react-router-dom";
 
 function RoomItem(props) {
     return(
-        <div>
-            Hotel Name: {props.data.hotelName} <br/>
-            Room Number: {props.data.roomNumber} <br/>
-            Capacity: {props.data.capacity} <br/>
-            Price Per Night: ${props.data.pricePerNight}<br/>
-            Book:
-            <Link to={{pathname:"/newBooking",state:{id:props.data.roomNumber,hotelId:props.data.hotelId}}}>
-                <input type={"submit"} value={"Book"}/>
-            </Link>
+        <div className="ui cards">
+            <div className="card">
+                <div className="content">
+                    <h3 className="ui left floated header">
+                        Hotel Name
+                        <div className="sub header">{props.data.hotelName}</div>
+                    </h3>
 
-            {/*On click route to booking page with room Id page*/}
+                    <span className={"right floated"}> ${props.data.pricePerNight}/night</span>
+                    <div className="description">
+                        {/*Should we change this from room number to location ?*/}
+                        <h3 className="ui left floated header">
+                            Room Number
+                            <div className="sub header">{props.data.roomNumber}</div>
+                        </h3>
+                        <h3 className="ui right floated header">
+                            Capacity
+                            <div className="sub header">{props.data.capacity}</div>
+                        </h3>
+                        {/*<span className={"left floated time"}>Room Number</span>*/}
+                        {/*<span className={"right floated time"}> Capacity </span> <br/>*/}
+                        {/*<span className={"left meta floated time"}>{props.data.roomNumber} </span>*/}
+                        {/*<span className={"right meta floated time"}>{props.data.capacity} </span> <br/>*/}
+                    </div>
+                </div>
+                <Link to={{pathname:"/newBooking",state:{id:props.data.roomNumber,hotelId:props.data.hotelId}}}>
+                    <div className={"ui primary bottom attached button"} >
+                        Book
+                    </div>
+
+                </Link>
+            </div>
         </div>
     )
 }

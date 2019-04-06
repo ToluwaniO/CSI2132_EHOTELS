@@ -1,9 +1,29 @@
 import React from 'react'
+
+// import { withStyles } from '@material-ui/core/styles'
+
+// const styles = theme => ({
+//     container: {
+//         display: 'flex',
+//         flexWrap: 'wrap',
+//     },
+//     textField: {
+//         marginLeft: theme.spacing.unit,
+//         marginRight: theme.spacing.unit,
+//     },
+//     dense: {
+//         marginTop: 16,
+//     },
+//     menu: {
+//         width: 200,
+//     },
+// });
+
     function NewOrUpdate(props){
         if(props.new === "true"){
             return(
                 <div>
-                    Submit: <input  type={"submit"} id={"submit"} value={"Submit"}  onClick={()=> props.func(props.service)}/>
+                    Submit: <input  className={"btn btn-primary"} type={"submit"} id={"submit"} value={"Submit"}  onClick={()=> props.func(props.service)}/>
                 </div>
             )
         }else {
@@ -21,6 +41,12 @@ class CustomerForm extends React.Component{
         super(props);
         this.sendData=this.sendData.bind(this);
     }
+    handleChange = name => event => {
+        this.setState({
+            [name]: event.target.value,
+        });
+    };
+
     sendData(){
         const sin = document.getElementById("sin").value
         const firstname = document.getElementById("firstname").value
@@ -31,15 +57,15 @@ class CustomerForm extends React.Component{
         const province = document.getElementById("province").value
         const postalCode = document.getElementById("postalCode").value
         const obj = "{" +
-            "\"SIN\":\""+sin+"\","+
-            "\"firstName\":\""+firstname+"\","+
-            "\"lastName\":\""+lastname+"\","+
+            "\"sin\":\""+sin+"\","+
+            "\"firstname\":\""+firstname+"\","+
+            "\"lastname\":\""+lastname+"\","+
             "\"registrationDate\":\""+registrationDate+"\","+
             "\"streetAddress\":\""+streetAddress+"\","+
             "\"city\":\""+city+"\","+
             "\"province\":\""+province+"\","+
-            "\"postalCode\":\""+postalCode+"\"}";
-        console.log(obj);
+            "\"postalCode\":\""+postalCode+"\"}"
+        console.log(obj)
         console.log(this.props.service)
         // const xhr = new XMLHttpRequest()
         // xhr.open('POST', '/server', true)
@@ -47,6 +73,7 @@ class CustomerForm extends React.Component{
         //  need to find right way of sending request
     }
     render(){
+        const { classes } = this.props;
         let button;
         //change this from a state based condition to a props based condition
         if(this.props.submit){
@@ -56,9 +83,57 @@ class CustomerForm extends React.Component{
         }
         return (
             <div>
-                {/*<form>*/}
-                    <div>
-                        SIN: <input type={"text"} name={"sin"} id={"sin"}/>
+                <form>
+                {/*<TextField*/}
+                {/*    id={"sin"}*/}
+                {/*    label={"SIN"}*/}
+                {/*    type={"text"}*/}
+                {/*    className={classes.textField}*/}
+                {/*    onChange={this.handleChange('name')}*/}
+                {/*    margin={"normal"}*/}
+                {/*    variant={"outlined"}*/}
+                {/*/>*/}
+
+                {/*<TextField*/}
+                {/*    id={"sin"}*/}
+                {/*    label={"SIN"}*/}
+                {/*    type={"text"}*/}
+                {/*    className={classes.textField}*/}
+                {/*    onChange={this.handleChange('name')}*/}
+                {/*    margin={"normal"}*/}
+                {/*    variant={"outlined"}*/}
+                {/*/>*/}
+
+                {/*    <TextField*/}
+                {/*        id={"sin"}*/}
+                {/*        label={"SIN"}*/}
+                {/*        type={"text"}*/}
+                {/*        className={classes.textField}*/}
+                {/*        onChange={this.handleChange('name')}*/}
+                {/*        margin={"normal"}*/}
+                {/*        variant={"outlined"}*/}
+                {/*    />*/}
+                {/*    <TextField*/}
+                {/*        id={"sin"}*/}
+                {/*        label={"SIN"}*/}
+                {/*        type={"text"}*/}
+                {/*        className={classes.textField}*/}
+                {/*        onChange={this.handleChange('name')}*/}
+                {/*        margin={"normal"}*/}
+                {/*        variant={"outlined"}*/}
+                {/*    />*/}
+                {/*    <TextField*/}
+                {/*        id={"sin"}*/}
+                {/*        label={"SIN"}*/}
+                {/*        type={"text"}*/}
+                {/*        className={classes.textField}*/}
+                {/*        onChange={this.handleChange('name')}*/}
+                {/*        margin={"normal"}*/}
+                {/*        variant={"outlined"}*/}
+                {/*    />*/}
+
+                <div>
+                        SIN: <input type={"text"} name={"sin"} />
                         <br/>
                     </div>
                     <div>
@@ -95,7 +170,7 @@ class CustomerForm extends React.Component{
                         Cancel: <input  type={"submit"} id={"Cancel"} value={"Cancel"}  />
                         <br/>
                     </div>
-                {/*</form>*/}
+                </form>
             </div>
         )
     }
@@ -103,4 +178,4 @@ class CustomerForm extends React.Component{
 
 }
 
-export default CustomerForm
+export default CustomerForm;

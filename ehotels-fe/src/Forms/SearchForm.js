@@ -38,37 +38,97 @@ class SearchForm extends React.Component{
     render(){
         return(
             <div>
-                <div>
-                    Start Date: <input type={"date"} id={"startDate"}/>
-                    <br/>
-                </div>
-                <div>
-                    End Date: <input type={"date"} id={"endDate"}/>
-                    <br/>
-                </div>
-                <div>
-                    Room Capacity: <input type={"text"} id={"roomCapacity"}/>
-                </div>
-                <div>
-                    City: <input type={"text"} id={"city"}/>
-                </div>
-                <div>
-                    Province: <input type={"text"} id={"province"}/>
-                </div>
-                <div>
-                    Hotel Chain Name: <input type={"text"} id={"hotelChainName"}/>
-                </div>
-                <div>
-                    Hotel Category: <input type={"text"} id={"hotelCategory"}/>
-                </div>
-                <div>
-                    Hotel Room Capacity: <input type={"text"} id={"hotelRoomCapacity"}/>
-                </div>
-                <div>
-                    Price Per Night: <input type={"number"} id={"pricePerNight"}/>
-                </div>
-                <div>
-                    Search: <input type={"submit"} id={"submit"} value={"Search"} onClick={this.sendData}/>
+                <form className="ui form">
+                    <div>
+                        <div className={"two fields"} >
+                            <div className={"field"}>
+                                <label>Hotel Chain</label>
+                                <select className="ui fluid dropdown">
+                                    <option value="">Choose</option>
+                                    <option value="FP">Four Points</option>
+                                    {/*<option value="QB">Quebec</option>*/}
+                                </select>
+                            </div>
+
+                            <div className={"field"}>
+                                <label>Hotel Rating</label>
+                                <select className="ui fluid dropdown">
+                                    <option value="">Choose</option>
+                                    <option value="FP">Four Points</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+                <form className="ui form">
+                    <div>
+                        <div className={"three fields"} >
+                            <div className={"field"}>
+                                <h4 >
+                                    Price/Night
+                                    <div className="ui right labeled input">
+                                        <label htmlFor="amount" className="ui label">$</label>
+                                        <input type="text" placeholder="Amount" id="amount"/>
+                                    </div>
+                                </h4>
+
+                            </div>
+
+                            <div className={"field"}>
+                                <label>Capacity</label>
+                                <select className="ui fluid dropdown">
+                                    <option value="">Choose</option>
+                                    <option value="FP">Single</option>
+                                    {/*<option value="QB">Quebec</option>*/}
+                                </select>
+                            </div>
+
+                            <div className={"field"}>
+                                <label>Rooms</label>
+                                <div className="ui right labeled input">
+                                    <input type="number" placeholder="Number" id="rooms"/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+                <form className="ui form">
+                    <div>
+                        <div className={"two fields"} >
+                            <div className={"field"}>
+                                <h4 className="ui left floated header">
+                                    Check In
+                                    <input type={"date"} id={"startDate"}/>
+                                </h4>
+                            </div>
+
+                            <div className={"field"}>
+                                <h4 className="ui right floated header">
+                                    Check Out
+                                    <input type={"date"} id={"endDate"}/>
+                                </h4>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+                <form className="ui form">
+                    <div className={"field"}>
+                        <label>Location</label>
+                        <select className="ui fluid dropdown">
+                            <option value="">Choose</option>
+                            <option value="FP">Ottawa</option>
+                        </select>
+                    </div>
+                </form>
+
+                <div >
+                    <input className={"ui button right floated"} type={"submit"} tabIndex="0" value={"Search"} onClick={this.sendData}/>
                 </div>
             </div>
         )

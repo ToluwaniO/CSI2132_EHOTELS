@@ -126,7 +126,7 @@ class SearchForm extends React.Component{
                         </select>
                     </div>
                 </form>
-
+                <br/>
                 <div >
                     <input className={"ui button right floated"} type={"submit"} tabIndex="0" value={"Search"} onClick={this.sendData}/>
                 </div>

@@ -102,29 +102,6 @@ class PaymentForm extends React.Component{
                             </select>
                         </div>
                     </div>
-                    {/*<h4 className="ui dividing header">Billing Information</h4>*/}
-                    {/*<div className="field">*/}
-                    {/*    <label>Card Type</label>*/}
-                    {/*    <select className="ui selection dropdown">*/}
-                    {/*        <input type="hidden" name="card[type]"/>*/}
-                    {/*        <div className="default text">Type</div>*/}
-                    {/*        <i className="dropdown icon"></i>*/}
-                    {/*        <div className="menu">*/}
-                    {/*            <div className="item" data-value="visa">*/}
-                    {/*                <i className="visa icon"></i>*/}
-                    {/*                Visa*/}
-                    {/*            </div>*/}
-                    {/*            <div className="item" data-value="amex">*/}
-                    {/*                <i className="amex icon"></i>*/}
-                    {/*                American Express*/}
-                    {/*            </div>*/}
-                    {/*            <div className="item" data-value="discover">*/}
-                    {/*                <i className="discover icon"></i>*/}
-                    {/*                Discover*/}
-                    {/*            </div>*/}
-                    {/*        </div>*/}
-                    {/*    </select>*/}
-                    {/*</div>*/}
                     <div className="fields">
                         <div className="seven wide field">
                             <label>Card Number</label>
@@ -161,7 +138,7 @@ class PaymentForm extends React.Component{
                         </div>
                     </div>
                     <Link to={"/employee"}>
-                        <input className={"ui button"} type={"submit"} tabIndex="0" value={"Process Payment"}/>
+                        <input className={"ui primary button"} type={"submit"} tabIndex="0" value={"Process Payment"}/>
                     </Link>
 
                 </form>

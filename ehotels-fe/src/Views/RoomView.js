@@ -63,11 +63,15 @@ class RoomView extends React.Component{
     render() {
         const roomItems = this.state.data.map(room => <RoomItem key={room.roomNumber} data={room}/>)
         return (
-            <div>
-                <SearchForm func={this.search}/>
-                <div>
+            <div  style={{margin:"auto",padding:"20px"}}>
+                <div className="card" style={{float: "left", width:"400px"}}>
+                    <SearchForm func={this.search}/>
+                </div>
+
+                <div style={{float: "right", marginLeft:"5px" }}>
                     {roomItems}
                 </div>
+
             </div>
 
         )

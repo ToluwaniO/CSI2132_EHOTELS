@@ -9,7 +9,7 @@ class DbCreator {
     private val hotelNames = arrayOf("Four Points", "Coast Hotels", "Four Seasons", "Red Roof Inn", "Prince Hotels")
     private val cities = arrayOf("Toronto", "Vancouver", "Montreal", "Ottawa", "Calgary", "Gatineau", "Saskatoon", "Burnaby")
     private val employeeNames = arrayOf("Anthony Martial", "Marcus Rashford", "Jadon Sancho", "Luke Shaw")
-    private val categories = arrayOf("Travel", "Resort", "Motel", "Luxury", "Family")
+    private val provinces = arrayOf("ontario", "quebec", "manitoba", "saskatoon")
     private val rand = Random()
 
     fun createDb(connection: Connection) = transaction(Connection.TRANSACTION_SERIALIZABLE, 1) {
@@ -21,21 +21,7 @@ class DbCreator {
         hotelChains?.forEach { raw ->
             HotelChain.insert {
                 it[name] = raw["name"] as String
-                it[category] = categories[rand.nextInt(5)]
-                it[numberOfHotels] = raw["numberOfHotels"].toString().toDouble().toInt()
-            }
-        }
-
-        for (i in 1..40) {
-            Employee.insert {
-                it[SIN] = getStringWithTrailingZeros(i, 9)
-                it[name] = employeeNames[rand.nextInt(3)]
-                it[hotelID] = i
-                it[position] = "Manager"
-                it[streetAddress] = ""
-                it[city] = ""
-                it[province] = ""
-                it[postalCode] = ""
+                it[numberOfHotels] = 0
             }
         }
 
@@ -49,14 +35,14 @@ class DbCreator {
                 Hotel.insert {
                     it[hotelChainID] = i
                     it[name] = "$hotelName ${cities[j-1]}"
-                    it[category] = categories[rand.nextInt(5)]
+                    it[category] = rand.nextInt(5)+1
                     it[roomCount] = 5
                     it[email] = ""
                     it[managerSIN] = sin
                     it[phoneNumber] = phoneNo
                     it[streetAddress] = ""
                     it[city] = ""
-                    it[province] = ""
+                    it[province] = provinces[rand.nextInt(provinces.size)]
                     it[postalCode] = ""
                 }
 
@@ -66,11 +52,23 @@ class DbCreator {
                         it[roomNumber] =  "$hID-${getStringWithTrailingZeros(k,4)}"
                         it[capacity] = 2
                         it[pricePerNight] = 20.0
-
                     }
                 }
                 currentSIN++
                 hID++
+            }
+        }
+
+        for (i in 1..40) {
+            Employee.insert {
+                it[SIN] = getStringWithTrailingZeros(i, 9)
+                it[name] = employeeNames[rand.nextInt(3)]
+                it[hotelID] = i
+                it[position] = "Manager"
+                it[streetAddress] = ""
+                it[city] = ""
+                it[province] = ""
+                it[postalCode] = ""
             }
         }
 
@@ -108,9 +106,11 @@ class DbCreator {
     private fun createTriggers(connection: Connection) {
         try {
             val triggersFile = DbCreator::class.java.getResource("triggers.sql")
-            val triggers = triggersFile.readText()
-            val statement = connection.createStatement()
-            statement.execute(triggers)
+            val triggers = triggersFile.readText().split("/*split*/")
+            for (trigger in triggers) {
+                val statement = connection.createStatement()
+                statement.execute(trigger)
+            }
         } catch (e: Exception) {
             println(e.message)
         }
@@ -119,14 +119,5 @@ class DbCreator {
     private fun getDummyData(): Map<String, Any> {
         val data = DbCreator::class.java.getResource("data.json").readText()
         return Gson().fromJson<Map<String, Any>>(data, Map::class.java)
-    }
-
-    private fun getStringWithTrailingZeros(number: Int, len: Int): String {
-        val n = "$number"
-        var SIN = n
-        for (i in 0 until (len-n.length)) {
-            SIN = "0$SIN"
-        }
-        return SIN
     }
 }

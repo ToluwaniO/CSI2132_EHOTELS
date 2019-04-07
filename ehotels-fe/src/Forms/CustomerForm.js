@@ -41,9 +41,13 @@ class CustomerForm extends React.Component{
             "\"postalCode\":\""+postalCode+"\"}";
         console.log(obj);
         console.log(this.props.service)
-        // const xhr = new XMLHttpRequest()
-        // xhr.open('POST', '/server', true)
-        // xhr.send(obj)
+        const xhr = new XMLHttpRequest()
+        xhr.open('GET', 'localhost:4567/hello', true)
+        xhr.onload = function(e) {
+            console.log(xhr.responseText)
+            console.log(xhr.statusText)
+        }
+        xhr.send(obj)
         //  need to find right way of sending request
     }
     render(){

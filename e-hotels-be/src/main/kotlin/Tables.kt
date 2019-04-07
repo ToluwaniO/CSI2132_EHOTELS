@@ -3,7 +3,6 @@ import org.jetbrains.exposed.sql.Table
 object HotelChain: Table() {
     val id = integer("id").autoIncrement().primaryKey()
     val name = varchar("name", 100)
-    val category = varchar("category", 100)
     val numberOfHotels = integer("numberOfHotels")
 }
 
@@ -11,7 +10,7 @@ object Hotel: Table() {
     val id = integer("id").autoIncrement().primaryKey()
     val hotelChainID = integer("hotelChainID") references HotelChain.id
     val name = varchar("name", 100)
-    val category = varchar("category", 100)
+    val category = integer("category")
     val roomCount = integer("roomCount")
     val email = varchar("email", 100)
     val managerSIN = varchar("managerSIN", 9) references Employee.SIN

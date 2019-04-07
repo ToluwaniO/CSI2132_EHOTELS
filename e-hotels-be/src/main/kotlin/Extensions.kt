@@ -105,3 +105,12 @@ fun <T> query(retries: Int = 0, statement: () -> T): T? {
         }
     }
 }
+
+fun getStringWithTrailingZeros(number: Int, len: Int): String {
+    val n = "$number"
+    var SIN = n
+    for (i in 0 until (len-n.length)) {
+        SIN = "0$SIN"
+    }
+    return SIN
+}

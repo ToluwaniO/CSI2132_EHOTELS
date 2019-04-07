@@ -27,22 +27,32 @@ class RoomForm extends React.Component{
         const hotelId = document.getElementById("hotelId").value
         const roomNumber = document.getElementById("roomNumber").value
         const capacity = document.getElementById("capacity").value
-        const pricePerNight = document.getElementById("pricePerNight").value
-        const obj = "{" +
-            "\"hotelId\":\""+hotelId+"\","+
-            "\"roomNumber\":\""+roomNumber+"\","+
-            "\"capacity\":\""+capacity+"\","+
-            "\"pricePerNight\":\""+pricePerNight+"\"}"
-        console.log(obj)
-        console.log(service)
-        const xhr = new XMLHttpRequest()
-        xhr.open('POST', 'http://localhost:4567/addRoom', true)
-        xhr.onload = function(e) {
-            console.log("Loaded")
-            console.log(xhr.responseText)
-            console.log(xhr.statusText)
-        }
-        xhr.send(obj)
+        const pricePerNight = document.getElementById("pricePerNight").value;
+        const data = {};
+        data.hotelID = hotelId;
+        data.roomNumber = roomNumber;
+        data.capacity = capacity;
+        data.pricePerNight = pricePerNight;
+        console.log(data);
+        fetch('http://localhost:4567/addRoom', {
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+        .then((response) => {
+            return response.text()
+        }, (error) => {
+            console.error(error)
+            alert("An error occurred")
+        })
+        .then((data) => {
+            const info = JSON.parse(data)
+            if (info.err) {
+                alert("an error occurred")
+            } else {
+                alert("Process successful")
+            }
+            console.log(data)
+        });
     }
     render() {
         let button;

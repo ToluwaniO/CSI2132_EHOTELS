@@ -8,10 +8,10 @@ class DeletePage extends React.Component{
         let customerButton
         let employeeButton
         if(this.props.delete === true){
-            hotelButton = <input type={"submit"} value={"Delete Hotel"}/>
-            roomButton = <input type={"submit"} value={"Delete Room"}/>
-            customerButton = <input type={"submit"} value={"Delete Customer"}/>
-            employeeButton = <input type={"submit"} value={"Delete Employee"}/>
+            hotelButton = <input id={"hotelID"} type={"submit"} value={"Delete Hotel"}/>
+            roomButton = <input id={"roomID"} type={"submit"} value={"Delete Room"}/>
+            customerButton = <input id={"customerSIN"} type={"submit"} value={"Delete Customer"}/>
+            employeeButton = <input id={"employeeSIN"} type={"submit"} value={"Delete Employee"}/>
         }else{
             hotelButton = <Link to={"/updateHotel"}>
                              <input type={"submit"} value={"Update Hotel"}/>
@@ -69,6 +69,10 @@ class DeletePage extends React.Component{
                 </form>
             </div>
         )
+    }
+
+    delete(service) {
+
     }
 }
 

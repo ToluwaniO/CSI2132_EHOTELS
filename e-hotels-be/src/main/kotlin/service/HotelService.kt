@@ -305,9 +305,10 @@ class HotelService(val req: Request) {
     }
 
     fun deleteRoom(hotelId: Int, roomNumber: String): Response {
+        val roomNo = "$hotelId-${getStringWithTrailingZeros(roomNumber.toInt(), 4)}"
         return query<Response?> {
             val id = Room.deleteWhere {
-                (Room.hotelID eq hotelId) and (Room.roomNumber eq roomNumber)
+                (Room.hotelID eq hotelId) and (Room.roomNumber eq roomNo)
             }
             if (id < 1) {
                 return@query null
@@ -366,5 +367,25 @@ class HotelService(val req: Request) {
             }
             return@query rooms
         } ?: emptyList()
+    }
+
+    fun findBooking(customerSIN: String?, bookingID: Int?): Response {
+        val booking = query<List<model.Booking>> {
+            val query = Booking.selectAll()
+            customerSIN?.let {
+                query.andWhere {
+                    Booking.customerSIN eq customerSIN
+                }
+            }
+            bookingID?.let {
+                query.andWhere {
+                    Booking.id eq bookingID
+                }
+            }
+            return@query query.toList().map {
+                it.to<model.Booking>(listOf(Booking))
+            }.toList()
+        }
+        return Response(booking)
     }
 }

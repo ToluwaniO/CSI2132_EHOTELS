@@ -19,8 +19,10 @@ import {Link} from "react-router-dom"
         }
     }
 class HotelForm extends React.Component{
+    props;
     constructor(props){
         super(props);
+        this.props = props;
         this.sendData=this.sendData.bind(this);
     }
 
@@ -34,28 +36,46 @@ class HotelForm extends React.Component{
         const hotelManagerSIN = document.getElementById("hotelManagerSIN").value
         const hotelPhoneNumber = document.getElementById("hotelPhoneNumber").value
         const hotelStreetAddress = document.getElementById("hotelStreetAddress").value
-        const hotelCity = document.getElementById("hotelCity").value
-        const hotelProvince = document.getElementById("hotelProvince").value
+        // const hotelCity = document.getElementById("hotelCity").value
+        const hotelProvince = document.getElementById("province").value
         const hotelPostalCode = document.getElementById("hotelPostalCode").value
 
-        const obj = "{" +
-            "\"hotelId\":\""+hotelId+"\","+
-            "\"hotelChainId\":\""+hotelChainId+"\","+
-            "\"hotelName\":\""+hotelName+"\","+
-            "\"hotelCategory\":\""+hotelCategory+"\","+
-            "\"hotelRoomCount\":\""+hotelRoomCount+"\","+
-            "\"hotelEmail\":\""+hotelEmail+"\","+
-            "\"hotelManagerSIN\":\""+hotelManagerSIN+"\","+
-            "\"hotelPhoneNumber\":\""+hotelPhoneNumber+"\","+
-            "\"hotelStreetAddress\":\""+hotelStreetAddress+"\","+
-            "\"hotelCity\":\""+hotelCity+"\","+
-            "\"hotelProvince\":\""+hotelProvince+"\","+
-            "\"hotelPostalCode\":\""+hotelPostalCode+"\"}"
-        console.log(obj)
-        console.log(service)
-        const xhr = new XMLHttpRequest()
-        xhr.open('POST', '/server', true)
-        xhr.send(obj)
+        const data = {};
+        if (hotelId && hotelId.length > 0) {
+            data.id = hotelId;
+        } else {
+            data.id = 0;
+        }
+        data.hotelChainID = hotelChainId;
+        data.name = hotelName;
+        data.category = hotelCategory;
+        data.roomCount = hotelRoomCount;
+        data.email = hotelEmail;
+        data.managerSIN = hotelManagerSIN;
+        data.phoneNumber = hotelPhoneNumber;
+        data.streetAddress = hotelStreetAddress;
+        data.city = "";
+        // data.city = hotelCity;
+        data.province = hotelProvince;
+        data.postalCode = hotelPostalCode;
+        console.log(JSON.stringify(data));
+
+        fetch("http://localhost:4567/addHotel", {
+            method: "POST",
+            body: JSON.stringify(data)
+        }).then((response) => {
+            return response.text()
+        }, (error) => {
+
+        }).then((data) => {
+            console.log(data);
+            const info = JSON.parse(data)
+            if (info.err) {
+                alert("an error occurred")
+            } else {
+                alert("Process successful")
+            }
+        })
 
 
     }
@@ -181,7 +201,7 @@ class HotelForm extends React.Component{
                                     </div>
                                     <div className="field">
                                         <label>Country</label>
-                                        <select className="ui fluid search selection dropdown">
+                                        <select id={"country"} className="ui fluid search selection dropdown">
                                             <option value="">Country</option>
                                             <option className="item" data-value="af">Canada</option>
                                             <option className="item" data-value="af">America</option>

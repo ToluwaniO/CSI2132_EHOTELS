@@ -68,6 +68,15 @@ class AuthService(val req: Request) {
         return resp ?: Response(error = HotelsError("An error occurred"))
     }
 
+    fun deleteCustomer(sin: String): Response {
+        query {
+            Customer.deleteWhere {
+                Customer.SIN eq sin
+            }
+        }
+        return Response("User deleted")
+    }
+
     fun getCustomer(email: String, showPassword: Boolean = false): model.Customer? {
         val resp = query {
             val slice = arrayListOf(Customer.SIN, Customer.name, Customer.email, Customer.streetAddress, Customer.city,

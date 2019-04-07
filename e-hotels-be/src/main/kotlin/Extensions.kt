@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
+import spark.QueryParamsMap
 import spark.Request
 import java.sql.Connection
 
@@ -75,6 +76,15 @@ fun getTable(name: String): Table {
     }
 }
 
+fun Request.queryStringMap(): Map<String, Any> {
+    val qMap = queryMap().toMap()
+    val nMap = hashMapOf<String, String>()
+    for (entry in qMap.entries) {
+        nMap[entry.key] = entry.value?.joinToString("") ?: ""
+    }
+    return nMap
+}
+
 fun Table.validateMap(map: Map<String, Any>): Boolean {
     for (column in this.columns) {
 //        if (!column.columnType.nullable && map[column.name] == null) return false
@@ -113,4 +123,25 @@ fun getStringWithTrailingZeros(number: Int, len: Int): String {
         SIN = "0$SIN"
     }
     return SIN
+}
+fun <T> Request.param(key: String): T? {
+    val param = queryParams(key)
+    if (param == null || param.isBlank()) {
+        return null
+    }
+    return param.split("?")[0] as T?
+}
+
+fun Request.reqParams(): Map<String, String?> {
+    val query = queryString()
+    println(query)
+    val map = hashMapOf<String, String?>()
+    val entries = query.split("?")
+    for (entry in entries) {
+        val keyValue = entry.split("=")
+        if (keyValue.size == 2) {
+            map[keyValue[0]] = keyValue[1]
+        }
+    }
+    return map
 }

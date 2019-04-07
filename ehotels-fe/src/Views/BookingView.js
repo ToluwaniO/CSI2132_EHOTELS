@@ -32,6 +32,12 @@ function BookingItem(props) {
     )
 }
 
+function HotelSelection(props) {
+    return(
+        <option value={props.hotel.name}>props.hotel.name</option>
+    )
+}
+
 class BookingView extends React.Component{
     constructor(props){
         super(props)
@@ -42,14 +48,16 @@ class BookingView extends React.Component{
                 "endTime":"15/01/3000",
                 "roomNumber":"005",
                 "customerSIN":"887"
-        }]}
+        }],hotels:[]}
         this.search=this.search.bind(this)
+        this.getHotels=this.getHotels.bind(this)
 
 
     }
 
     componentDidMount() {
         this.search("","")
+        this.getHotels()
     }
 
     search(customerSIN,bookingId){
@@ -58,8 +66,15 @@ class BookingView extends React.Component{
         //     .then(response => response.json())
         //     .then(data => this.setState({ data }));
     }
+
+    getHotels(){
+        fetch('http://localhost:4567/hotels')
+            .then(response => response.json())
+            .then(hotels => this.setState({ hotels }));
+    }
     render() {
         const bookingItems = this.state.data.map(booking => <BookingItem key={booking.bookingId} data={booking}/>)
+        const hotelOptions = this.state.hotels.map(hotel => <HotelSelection key={hotel.hotelId} data={hotel}/>)
         return (
             <div>
                 <BookingSearchForm func={this.search}/>

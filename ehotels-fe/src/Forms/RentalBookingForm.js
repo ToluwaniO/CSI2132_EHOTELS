@@ -1,18 +1,19 @@
 import React from "react"
+import {Link} from "react-router-dom"
 
 function NewOrUpdate(props){
 
     if(props.new === "true"){
         return(
-            <div>
-                Submit: <input  type={"submit"} id={"submit"} value={"Submit"}  onClick={()=> props.func()}/>
-            </div>
+            <Link to={"/employee"}>
+                <input className={"ui primary button"} type={"submit"} tabIndex="0" id={"submit"} value={"Submit"} onClick={()=> props.func(props.service)}/>
+            </Link>
         )
     }else {
         return(
-            <div>
-                Update: <input  type={"submit"} id={"update"} value={"Update"}  onClick={()=> props.func()}/>
-            </div>
+            <Link to={"/employee"}>
+                <input className={"ui primary button"}  id={"update"} type={"submit"} tabIndex="0" value={"Update"} onClick={()=> props.func(props.service)}/>
+            </Link>
         )
     }
 }
@@ -106,28 +107,66 @@ class RentalBookingForm extends React.Component{
         return (
             <div>
                 {/*<form>*/}
-                {div}
-                {hotelIdDiv}
-                {roomNumberDiv}
-                <div>
-                    Start Date: <input type={"date"} id={"startDate"}/>
-                    <br/>
-                </div>
-                <div>
-                    End Date: <input type={"date"} id={"endDate"}/>
-                    <br/>
-                </div>
-                <div>
-                    Customer SIN: <input type={"text"} id={"customerSIN"}/>
-                    <br/>
-                </div>
-                {div1}
-                <div>
-                    {button}
 
-                    Cancel: <input  type={"submit"} id={"Cancel"} value={"Cancel"}  />
-                    <br/>
+
+
+
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <form className="ui form">
+                        <h4 className="ui dividing header">Rental Booking Information</h4>
+                        <div className="field">
+                            <div className=" fields">
+                                <div className="field">
+                                    {div}
+                                </div>
+                                <div className="field">
+                                    {hotelIdDiv}
+                                </div>
+                                <div className="field">
+                                    {roomNumberDiv}
+                                </div>
+                            </div>
+
+                            <div className="two fields">
+                                <div className="field">
+                                    <div>
+                                        Customer SIN: <input type={"text"} id={"customerSIN"}/>
+                                        <br/>
+                                    </div>
+                                </div>
+                                <div className="field">
+                                    {div1}
+                                </div>
+                            </div>
+                            <div className="two fields">
+
+                                <div className="field">
+                                    <div>
+                                        Start Date: <input type={"date"} id={"startDate"}/>
+                                        <br/>
+                                    </div>
+                                </div>
+                                <div className="field">
+                                    <div>
+                                        End Date: <input type={"date"} id={"endDate"}/>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div>
+                            <span> {button}</span>
+                            <span>
+                                        <input style={{float:"right"}} className={"ui  button"} type={"submit"} tabIndex="0" id={"Cancel"} value={"Cancel"} />
+                                    </span>
+                            <br/>
+                        </div>
+                    </form>
                 </div>
+
                 {/*</form>*/}
             </div>
         )

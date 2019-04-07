@@ -6,6 +6,7 @@ class SearchForm extends React.Component{
         // this.state ={submit:true};
         this.sendData=this.sendData.bind(this);
     }
+
     sendData(){
 
         const startDate = document.getElementById("startDate").value
@@ -54,7 +55,11 @@ class SearchForm extends React.Component{
                                 <label>Hotel Rating</label>
                                 <select className="ui fluid dropdown">
                                     <option value="">Choose</option>
-                                    <option value="FP">Four Points</option>
+                                    <option value="1">1 Star</option>
+                                    <option value="2">2 Star</option>
+                                    <option value="3">3 Star</option>
+                                    <option value="4">4 Star</option>
+                                    <option value="5">5 Star</option>
                                 </select>
                             </div>
                         </div>
@@ -122,7 +127,10 @@ class SearchForm extends React.Component{
                         <label>Location</label>
                         <select className="ui fluid dropdown">
                             <option value="">Choose</option>
-                            <option value="FP">Ottawa</option>
+                            <option value="ON">Ontario</option>
+                            <option value="QB">Quebec</option>
+                            <option value="SK">Saskatoon</option>
+                            <option value="MB">Manitoba</option>
                         </select>
                     </div>
                 </form>

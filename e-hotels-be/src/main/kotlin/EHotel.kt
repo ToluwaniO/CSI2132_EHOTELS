@@ -90,6 +90,9 @@ fun main() {
 
     post("/addHotel") { req, res ->
         val data = req.body().to<model.Hotel>()
+        if (data.id > 0) {
+            HotelService(req).addHotel(data, true).toJSON()
+        }
         HotelService(req).addHotel(data).toJSON()
     }
 
@@ -136,6 +139,31 @@ fun main() {
             return@post Response(error = HotelsError("Could not find Employee SIN in url (/deleteEmployee/:SIN)")).toJSON()
         }
         EmployeeService(req).deleteEmployee(sin) ?: Response(error = HotelsError())
+    }
+
+    post("/deleteRoom/:id") { req, res ->
+        val id = req.params("id").toString()
+        if (id == null || !id.contains("-")) {
+            return@post Response(error = HotelsError("Could not find Room")).toJSON()
+        }
+        val keys = id.split("-")
+        HotelService(req).deleteRoom(keys[0].toInt(), keys[1]).toJSON()
+    }
+
+    post("/deleteCustomer/:sin") { req, res ->
+        val sin = req.params("sin").toString()
+        if (sin == null || sin.isBlank()) {
+            return@post Response(error = HotelsError("Could not find customer")).toJSON()
+        }
+        AuthService(req).deleteCustomer(sin).toJSON()
+    }
+
+    get("/findBooking") { req, res ->
+        val query = req.reqParams()
+        HotelService(req).findBooking(
+            query["customerSIN"],
+            query["bookingID"]?.toIntOrNull()
+        ).toJSON()
     }
 }
 

@@ -82,8 +82,8 @@ class BookingView extends React.Component{
     constructor(props){
         super(props)
         this.state = {data:[{
-                "bookingId":"0001",
-                "hotelName":"Musaroq Hotel",
+                "id":"0001",
+                "name":"Musaroq Hotel",
                 "startTime":"15/01/1998",
                 "endTime":"15/01/3000",
                 "roomNumber":"005",
@@ -101,10 +101,26 @@ class BookingView extends React.Component{
     }
 
     search(customerSIN,bookingId){
-        console.log('https://api.mydomain.com/'+customerSIN+"/"+bookingId)
-        // fetch('https://api.mydomain.com/'+customerSIN+"/"+bookingId)
-        //     .then(response => response.json())
-        //     .then(data => this.setState({ data }));
+        let url = "http://localhost:4567/findBooking";
+        if (customerSIN && customerSIN.length > 0) {
+            url = `${url}?customerSIN=${customerSIN}`;
+        }
+        if (bookingId && bookingId.length > 0) {
+            url = `${url}?bookingID=${bookingId}`;
+        }
+        fetch(url, {
+            method: "GET",
+        })
+        .then((response) => {
+            return response.text()
+        }, (error) => {
+            console.error(error)
+        })
+        .then((data) => {
+            console.log(data);
+            const d = JSON.parse(data).data;
+            this.setState({ d })
+        });
     }
 
     getHotels(){
@@ -113,8 +129,8 @@ class BookingView extends React.Component{
             .then(hotels => this.setState({ hotels }));
     }
     render() {
-        const bookingItems = this.state.data.map(booking => <BookingItem key={booking.bookingId} data={booking}/>)
-        const hotelOptions = this.state.hotels.map(hotel => <HotelSelection key={hotel.hotelId} data={hotel}/>)
+        const bookingItems = this.state.data.map(booking => <BookingItem key={booking.id} data={booking}/>)
+        // const hotelOptions = this.state.hotels.map(hotel => <HotelSelection key={hotel.hotelId} data={hotel}/>)
         return (
             <div  style={{margin:"auto",padding:"20px"}}>
                 <div className="card" style={{ width:"400px"}}>

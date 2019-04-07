@@ -133,7 +133,7 @@ fun <T> Request.param(key: String): T? {
 }
 
 fun Request.reqParams(): Map<String, String?> {
-    val query = queryString()
+    val query = queryString() ?: ""
     println(query)
     val map = hashMapOf<String, String?>()
     val entries = query.split("?")

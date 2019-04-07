@@ -37,14 +37,14 @@ class DeletePage extends React.Component{
                             <div className="field">
                                 <div>
                                     Room Number: <input type={"text"} name={"roomNumber"} id={"roomNumber"}/>
-                                    <input type={"submit"} value={"Delete Room"}/>
+                                    <input type={"submit"} value={"Delete Room"} onClick={() => {console.log("hello")}}/>
                                     <br/>
                                 </div>
                             </div>
                             <div className="field">
                                 <div>
                                     Hotel Id: <input type={"text"} id={"hotelId"}/>
-                                    <input type={"submit"} value={"Delete Hotel"}/>
+                                    <input type={"submit"} value={"Delete Hotel"} onClick={() => {console.log("hello")}}/>
                                     <br/>
                                 </div>
                             </div>
@@ -53,14 +53,14 @@ class DeletePage extends React.Component{
                             <div className="field">
                                 <div>
                                     Customer SIN: <input type={"text"} id={"customerSIN"}/>
-                                    <input type={"submit"} value={"Delete Customer"}/>
+                                    <input type={"submit"} value={"Delete Customer"} onClick={() => {console.log("hello")}}/>
                                     <br/>
                                 </div>
                             </div>
                             <div className="field">
                                 <div>
                                     Employee SIN: <input type={"text"} id={"employeeSIN"}/>
-                                    <input type={"submit"} value={"Delete Employee"}/>
+                                    <input type={"submit"} value={"Delete Employee"} onClick={() => {console.log("hello")}}/>
                                     <br/>
                                 </div>
                             </div>

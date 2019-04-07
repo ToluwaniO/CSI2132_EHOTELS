@@ -37,7 +37,12 @@ class RoomForm extends React.Component{
         console.log(obj)
         console.log(service)
         const xhr = new XMLHttpRequest()
-        xhr.open('POST', '/server', true)
+        xhr.open('POST', 'http://localhost:4567/addRoom', true)
+        xhr.onload = function(e) {
+            console.log("Loaded")
+            console.log(xhr.responseText)
+            console.log(xhr.statusText)
+        }
         xhr.send(obj)
     }
     render() {

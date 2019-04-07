@@ -328,13 +328,18 @@ class HotelService(val req: Request) {
         return Response("Hotel and its rooms successfully deleted")
     }
 
-    fun search(name: String?, startTime: Long?, endTime: Long?, city: String?, province: String?,
+    fun search(name: String?, hotelChainID: Int?, startTime: Long?, endTime: Long?, city: String?, province: String?,
                category: Int?): List<model.Room> {
         return query<List<model.Room>> {
             val hs = Hotel.selectAll()
             category?.let {
                 hs.andWhere {
                     Hotel.category eq category
+                }
+            }
+            hotelChainID?.let {
+                hs.andWhere {
+                    Hotel.hotelChainID eq it
                 }
             }
             province?.let {

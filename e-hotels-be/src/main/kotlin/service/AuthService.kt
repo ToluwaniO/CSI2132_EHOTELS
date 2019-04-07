@@ -51,15 +51,15 @@ class AuthService(val req: Request) {
                 return@query Response(error = HotelsError("This user already exists"))
             }
             val email = Customer.insert {
-                it[SIN] = "${System.currentTimeMillis()}".substring(0,9)
+                it[SIN] = data["SIN"] ?: "${System.currentTimeMillis()}".substring(0,9)
                 it[email] = data["email"] ?: throw Exception("")
                 it[password] = data["password"] ?: throw Exception("")
                 it[name] = data["name"] ?: throw Exception("")
                 it[registrationDate] = DateTime.now()
                 it[streetAddress] = data["streetAddress"] ?: throw Exception("")
-                it[city] = data["city"] ?: throw Exception("")
+                it[city] = data["city"] ?: ""
                 it[province] = data["province"] ?: throw Exception("")
-                it[postalCode] = data["postalCode"] ?: throw Exception("")
+                it[postalCode] = data["postalCode"]?.replace(" ", "")
             }
             val user = getCustomer(data["email"]!!) ?: return@query Response(error = HotelsError())
             req.session().attribute("user", user.email)

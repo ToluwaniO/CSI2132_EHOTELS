@@ -30,31 +30,34 @@ class CustomerForm extends React.Component{
 
     sendData(){
         const sin = document.getElementById("sin").value
+        const email = document.getElementById("email").value
+        const password = document.getElementById("password").value
         const firstname = document.getElementById("firstname").value
         const lastname = document.getElementById("lastname").value
         const registrationDate = new Date()
         const streetAddress = document.getElementById("streetAddress").value
-        const city = document.getElementById("city").value
+        // const city = document.getElementById("city").value
         const province = document.getElementById("province").value
         const postalCode = document.getElementById("postalCode").value
-        const obj = "{" +
-            "\"sin\":\""+sin+"\","+
-            "\"firstname\":\""+firstname+"\","+
-            "\"lastname\":\""+lastname+"\","+
-            "\"registrationDate\":\""+registrationDate+"\","+
-            "\"streetAddress\":\""+streetAddress+"\","+
-            "\"city\":\""+city+"\","+
-            "\"province\":\""+province+"\","+
-            "\"postalCode\":\""+postalCode+"\"}"
-        console.log(obj)
+        const data = {};
+        data.email = email;
+        data.password = password;
+        data.SIN = sin;
+        data.name = firstname + " " + lastname;
+        data.registrationDate = registrationDate.getTime();
+        data.streetAddress = streetAddress;
+        // data.city = city;
+        data.province = province;
+        data.postalCode = postalCode;
+        console.log(data)
         console.log(this.props.service)
         const xhr = new XMLHttpRequest()
-        xhr.open('GET', 'localhost:4567/hello', true)
+        xhr.open('POST', 'http://localhost:4567/signUp', true)
         xhr.onload = function(e) {
             console.log(xhr.responseText)
             console.log(xhr.statusText)
         }
-        xhr.send(obj)
+        xhr.send(JSON.stringify(data))
         //  need to find right way of sending request
     }
     render(){
@@ -91,6 +94,12 @@ class CustomerForm extends React.Component{
                             </div>
 
 
+                        </div>
+                        <div className="field">
+                            <label> Password</label>
+                            <div className="twelve wide field">
+                                <input type="text"  id={"password"} placeholder="Password"/>
+                            </div>
                         </div>
                         <div className="field">
                             <label> Address</label>

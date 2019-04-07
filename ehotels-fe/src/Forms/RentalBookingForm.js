@@ -5,7 +5,7 @@ function NewOrUpdate(props){
 
     if(props.new === "true"){
         return(
-            <Link to={"/employee"}>
+            <Link to={"/pay"}>
                 <input className={"ui primary button"} type={"submit"} tabIndex="0" id={"submit"} value={"Submit"} onClick={()=> props.func(props.service)}/>
             </Link>
         )

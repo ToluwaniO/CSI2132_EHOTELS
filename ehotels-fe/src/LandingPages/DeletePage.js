@@ -29,23 +29,44 @@ class DeletePage extends React.Component{
 
         return(
             <div>
-                <div>
-                    Room Id: <input type={"text"} id={"roomId"}/><br/>
-                    {roomButton}
-                </div>
-                <div>
-                    Hotel Id: <input type={"text"} id={"hotelId"}/><br/>
-                    {hotelButton}
-                </div>
-                <div>
-                    Customer SIN: <input type={"text"} id={"customerSIN"}/><br/>
-                    {customerButton}
-                </div>
-                <div>
-                    Employee SIN: <input type={"text"} id={"employeeSIN"}/><br/>
-                    {employeeButton}
-                </div>
+                <form className="ui form">
+                    <h4 className="ui dividing header">Room Information</h4>
+                    <div className="field">
+                        <div className="two fields">
 
+                            <div className="field">
+                                <div>
+                                    Room Number: <input type={"text"} name={"roomNumber"} id={"roomNumber"}/>
+                                    <input type={"submit"} value={"Delete Room"}/>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div className="field">
+                                <div>
+                                    Hotel Id: <input type={"text"} id={"hotelId"}/>
+                                    <input type={"submit"} value={"Delete Hotel"}/>
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="two fields">
+                            <div className="field">
+                                <div>
+                                    Customer SIN: <input type={"text"} id={"customerSIN"}/>
+                                    <input type={"submit"} value={"Delete Customer"}/>
+                                    <br/>
+                                </div>
+                            </div>
+                            <div className="field">
+                                <div>
+                                    Employee SIN: <input type={"text"} id={"employeeSIN"}/>
+                                    <input type={"submit"} value={"Delete Employee"}/>
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         )
     }

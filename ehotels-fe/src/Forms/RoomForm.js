@@ -20,7 +20,6 @@ function NewOrUpdate(props){
 class RoomForm extends React.Component{
     constructor(props){
         super(props);
-        this.state ={submit:true};
         this.sendData=this.sendData.bind(this);
     }
 
@@ -48,7 +47,8 @@ class RoomForm extends React.Component{
     render() {
         let button;
         //change this from a state based condition to a props based condition
-        if (this.state.submit) {
+        console.log(this.props)
+        if (this.props.submit) {
             button = <NewOrUpdate new={"true"} func={this.sendData} service={"/notYetImplemented"}/>
         } else {
             button = <NewOrUpdate func={this.sendData} service={"/notYetImplemented"}/>

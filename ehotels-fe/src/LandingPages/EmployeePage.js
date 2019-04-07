@@ -1,64 +1,37 @@
 import React from "react"
-import {Link} from "react-router-dom";
 
 class EmployeePage extends React.Component{
     render() {
         return(
             <div>
-                <Link to={"/"}>
-                    <button>Home</button>
-                </Link>
-                <div>
-                  Add new Customer:
-                    <Link to={"/addCustomer"}>
-                        <button>Add Customer</button>
-                    </Link>
-                </div>
-                <div>
-                    Add new Employee:
-                    <Link to={"/addEmployee"}>
-                        <button>Add Employee</button>
-                    </Link>
+                <div className="ui three item menu">
+
+                    <a className="item" href={"/"}>Home</a>
+
+                    {/*<h3> OR </h3>*/}
+                    <a className="item" href={"/addCustomer"}>Add Customer</a>
+
+                    <a className="item" href={"/addEmployee"}>Add Employee</a>
 
                 </div>
-                <div>
-                    Add new Hotel:
-                    <Link to={"/addHotel"}>
-                        <button>Add Hotel</button>
-                    </Link>
+                <div className="ui three item menu">
+
+                    <a className="item" href={"/addHotel"}>Add Hotel</a>
+
+                    {/*<h3> OR </h3>*/}
+                    <a className="item" href={"/addRoom"}>Add Room</a>
+
+                    <a className="item" href={"/newRental"}>New Rental</a>
 
                 </div>
-                <div>
-                    Add new Room:
-                    <Link to={"/addRoom"}>
-                        <button>Add Room</button>
-                    </Link>
-                </div>
-                <div>
-                    Create Rental:
-                    <Link to={"/newRental"}>
-                        <button> Rental</button>
-                    </Link>
+                <div className="ui three item menu">
 
-                </div>
-                <div>
-                    Find Booking:
-                    <Link to={"/findBooking"}>
-                        <button> Booking</button>
-                    </Link>
+                    <a className="item" href={"/findBooking"}>Find Booking</a>
 
-                </div>
-                <div>
-                    Update Data:
-                    <Link to={"/updateData"}>
-                        <button> Update Data</button>
-                    </Link>
-                </div>
-                <div>
-                    Delete Data:
-                    <Link to={"/deleteData"}>
-                        <button> Delete Data</button>
-                    </Link>
+                    {/*<h3> OR </h3>*/}
+                    <a className="item" href={"/updateData"}>Update Data</a>
+
+                    <a className="item" href={"/deleteData"}>Delete Data</a>
 
                 </div>
 

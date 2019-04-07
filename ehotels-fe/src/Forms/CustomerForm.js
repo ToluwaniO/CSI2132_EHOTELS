@@ -58,7 +58,6 @@ class CustomerForm extends React.Component{
         //  need to find right way of sending request
     }
     render(){
-        const { classes } = this.props;
         let button;
         //change this from a state based condition to a props based condition
         if(this.props.submit){

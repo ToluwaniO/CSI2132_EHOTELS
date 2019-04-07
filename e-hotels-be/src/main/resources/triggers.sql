@@ -5,12 +5,16 @@ BEGIN
   WHERE id = NEW.hotelChainID;
 end;
 
+/*split*/
+
 CREATE TRIGGER IF NOT EXISTS hotel_removed AFTER DELETE ON Hotel
 BEGIN
   UPDATE HotelChain
   SET numberOfHotels = numberOfHotels-1
   WHERE id = NEW.hotelChainID;
 end;
+
+/*split*/
 
 CREATE TRIGGER IF NOT EXISTS add_hotel BEFORE INSERT ON Hotel
 BEGIN
@@ -20,6 +24,8 @@ BEGIN
   end;
 end;
 
+/*split*/
+
 CREATE TRIGGER IF NOT EXISTS add_employee BEFORE INSERT ON Employee
 BEGIN
   SELECT CASE
@@ -28,6 +34,8 @@ BEGIN
   end;
 end;
 
+/*split*/
+
 CREATE TRIGGER IF NOT EXISTS add_room BEFORE INSERT ON Room
 BEGIN
   SELECT CASE
@@ -35,6 +43,8 @@ BEGIN
      RAISE(ABORT, "Hotel does not exist")
   end;
 end;
+
+/*split*/
 
 CREATE TRIGGER IF NOT EXISTS add_booking BEFORE INSERT ON Booking
 BEGIN
@@ -51,6 +61,8 @@ BEGIN
      RAISE(ABORT, "Customer does not exist")
   end;
 end;
+
+/*split*/
 
 CREATE TRIGGER IF NOT EXISTS add_Rental BEFORE INSERT ON Rental
 BEGIN

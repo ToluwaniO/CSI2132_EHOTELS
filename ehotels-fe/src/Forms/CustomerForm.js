@@ -56,6 +56,7 @@ class CustomerForm extends React.Component{
         xhr.onload = function(e) {
             console.log(xhr.responseText)
             console.log(xhr.statusText)
+            alert("Customer added");
         }
         xhr.send(JSON.stringify(data))
         //  need to find right way of sending request

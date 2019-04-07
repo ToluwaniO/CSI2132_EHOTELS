@@ -49,9 +49,14 @@ class RoomView extends React.Component{
     }
     search(obj){
         console.log(obj)
-        // fetch('https://api.mydomain.com/'+obj)
-        //     .then(response => response.json())
-        //     .then(data => this.setState({ data }));
+        fetch('http://localhost:4567/rooms')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                const arr = data.data;
+                this.setState({ data:arr })
+                console.log(this.state)
+            });
     }
     componentDidMount() {
         this.search("")

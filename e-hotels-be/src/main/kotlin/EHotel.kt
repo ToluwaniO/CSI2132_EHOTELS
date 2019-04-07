@@ -1,6 +1,7 @@
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.name
 import service.AuthService
+import service.EmployeeService
 import service.HotelService
 import spark.Request
 import spark.Spark.*
@@ -103,23 +104,38 @@ fun main() {
     }
 
     get("/search") { req, res ->
-        val data = req.map<String, Any>()
+        val data = req.reqParams()
         val rooms = HotelService(req).search(
             data["name"] as String?,
-            data["startTime"] as Long?,
-            data["endTime"] as Long?,
-            data["city"] as String?,
-            data["province"] as String?,
-            (data["category"] as Double?)?.toInt()
+            data["hotelChainID"]?.toIntOrNull(),
+            data["startTime"]?.toLongOrNull(),
+            data["endTime"]?.toLongOrNull(),
+            data["city"],
+            data["province"],
+            data["category"]?.toIntOrNull()
         )
         Response(rooms).toJSON()
     }
+
     post("/deleteHotel/:id") { req, res ->
         val id = req.params("id").toIntOrNull()
         if (id == null) {
             return@post Response(error = HotelsError("Could not find hotel id in url (/deleteHotel/:id)")).toJSON()
         }
         HotelService(req).deleteHotel(id).toJSON()
+    }
+
+    post("/addEmployee") { req, res ->
+        val data = req.body().to<model.Employee>()
+        EmployeeService(req).addEmployee(data).toJSON()
+    }
+
+    post("/deleteEmployee/:SIN") { req, res ->
+        val sin = req.params("SIN").toString()
+        if (sin == null) {
+            return@post Response(error = HotelsError("Could not find Employee SIN in url (/deleteEmployee/:SIN)")).toJSON()
+        }
+        EmployeeService(req).deleteEmployee(sin) ?: Response(error = HotelsError())
     }
 }
 

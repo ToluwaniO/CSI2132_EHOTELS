@@ -3,31 +3,26 @@
     {
       "id": 1,
       "name":"Four Points",
-      "category": "Travel",
       "numberOfHotels": 2
     },
     {
       "id": 2,
       "name":"Coast Hotels",
-      "category": "Resort",
       "numberOfHotels": 2
     },
     {
       "id": 3,
       "name":"Four Seasons Hotels and Resorts",
-      "category": "Travel",
       "numberOfHotels": 2
     },
     {
       "id": 4,
       "name":"Red Roof Inn",
-      "category": "Inn",
       "numberOfHotels": 2
     },
     {
       "id": 5,
       "name":"Prince Hotels",
-      "category": "Travel",
       "numberOfHotels": 2
     }
   ],

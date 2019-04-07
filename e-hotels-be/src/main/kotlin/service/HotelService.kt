@@ -11,6 +11,7 @@ import Room
 import Hotel
 import Booking
 import Rental
+import getStringWithTrailingZeros
 import org.jetbrains.exposed.sql.*
 import org.joda.time.DateTime
 import query
@@ -207,9 +208,12 @@ class HotelService(val req: Request) {
         return rooms ?: emptyList()
     }
 
-    fun addHotel(hotel: model.Hotel): Response {
+    fun addHotel(hotel: model.Hotel, addId: Boolean = false): Response {
         val h = query<model.Hotel?> {
             val rows = Hotel.insert {
+                if (addId) {
+                    it[id] = hotel.id
+                }
                 it[hotelChainID] = hotel.hotelChainID
                 it[name] = hotel.name
                 it[category] = hotel.category
@@ -220,7 +224,7 @@ class HotelService(val req: Request) {
                 it[streetAddress] = hotel.streetAddress
                 it[city] = hotel.city
                 it[province] = hotel.province
-                it[postalCode] = hotel.postalCode
+                it[postalCode] = hotel.postalCode.replace(" ", "")
             }
             val results = rows.resultedValues ?: emptyList()
             if (results.isEmpty()) {
@@ -244,17 +248,24 @@ class HotelService(val req: Request) {
     }
 
     fun addHotelChain(hotel: model.HotelChain): Response {
-        val h = query<model.Hotel?> {
+        val h = query<model.HotelChain?> {
             val rows = HotelChain.insert {
                 it[name] = hotel.name
-                it[category] = hotel.category
                 it[numberOfHotels] = hotel.numberOfHotels
             }
             val results = rows.resultedValues ?: emptyList()
             if (results.isEmpty()) {
                 return@query null
             }
-            return@query results[0].to(listOf(HotelChain))
+            val hotels = HotelChain.select {
+                HotelChain.id eq hotel.id
+            }.toList().map {
+                it.to<model.HotelChain>(listOf(HotelChain))
+            }.toList()
+            if (hotels.isEmpty()) {
+                return@query null
+            }
+            return@query hotels[0]
         }
         if (h == null) {
             return Response(error=HotelsError("Could not add hotel"))
@@ -263,10 +274,11 @@ class HotelService(val req: Request) {
     }
 
     fun addRoom(room: model.Room): Response {
-        val h = query<model.Hotel?> {
+        val roomNo = "${room.hotelID}-${getStringWithTrailingZeros(room.roomNumber.toInt(), 4)}"
+        val h = query<model.Room?> {
             val rows = Room.insert {
                 it[hotelID] = room.hotelID
-                it[roomNumber] = room.roomNumber
+                it[roomNumber] = roomNo
                 it[capacity] = room.capacity
                 it[pricePerNight] = room.pricePerNight
             }
@@ -274,11 +286,80 @@ class HotelService(val req: Request) {
             if (results.isEmpty()) {
                 return@query null
             }
-            return@query results[0].to(listOf(Room))
+            val rooms = Room.selectAll().andWhere {
+                Room.hotelID eq room.hotelID
+            }.andWhere {
+                Room.roomNumber eq roomNo
+            }.toList().map {
+                it.to<model.Room>(listOf(Room))
+            }.toList()
+            if (rooms.isEmpty()) {
+                return@query null
+            }
+            return@query rooms[0]
         }
         if (h == null) {
             return Response(error=HotelsError("Could not add hotel"))
         }
         return Response(h)
+    }
+
+    fun deleteRoom(hotelId: Int, roomNumber: String): Response {
+        return query<Response?> {
+            val id = Room.deleteWhere {
+                (Room.hotelID eq hotelId) and (Room.roomNumber eq roomNumber)
+            }
+            if (id < 1) {
+                return@query null
+            }
+            return@query Response("Room successfully deleted")
+        } ?: Response(error=HotelsError())
+    }
+
+    fun deleteHotel(id: Int): Response {
+        query {
+            Hotel.deleteWhere {
+                Hotel.id eq id
+            }
+            Room.deleteWhere {
+                Room.hotelID eq id
+            }
+        }
+        return Response("Hotel and its rooms successfully deleted")
+    }
+
+    fun search(name: String?, startTime: Long?, endTime: Long?, city: String?, province: String?,
+               category: Int?): List<model.Room> {
+        return query<List<model.Room>> {
+            val hs = Hotel.selectAll()
+            category?.let {
+                hs.andWhere {
+                    Hotel.category eq category
+                }
+            }
+            province?.let {
+                hs.andWhere {
+                    Hotel.province eq province.toLowerCase()
+                }
+            }
+            city?.let {
+                hs.andWhere {
+                    Hotel.city eq city.toLowerCase()
+                }
+            }
+            val hotels = hs.toList().map {
+                it.to<model.Hotel>(listOf(Hotel))
+            }.filter {
+                if (name != null) {
+                    return@filter it.name.toLowerCase().contains(name.toLowerCase())
+                }
+                true
+            }.toList()
+            val rooms = arrayListOf<model.Room>()
+            for (hotel in hotels) {
+                rooms.addAll(roomsAvailable(hotel.id, startTime, endTime))
+            }
+            return@query rooms
+        } ?: emptyList()
     }
 }

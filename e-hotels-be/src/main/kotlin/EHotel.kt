@@ -21,7 +21,7 @@ fun main() {
     val connection = connection()
     println("DB file in $dbPath")
     DbCreator().createDb(db.connector())
-//    DbCreator().createTriggers(connection())
+    CorsFilter().apply()
     get("/hello") { req, res ->
         "Hello world!"
     }
@@ -73,6 +73,7 @@ fun main() {
         }
         HotelService(req).bookRoom(req.body().to()).toJSON()
     }
+
     post("/bookingToRental") { req, res ->
         val data = req.map<String, String>()
         if (data.isEmpty()) {
@@ -80,23 +81,48 @@ fun main() {
         }
         HotelService(req).bookingToRental(data).toJSON()
     }
+
     get("/rooms") { req, res ->
         val data = req.map<String, String>()
         HotelService(req).availableRoomsInCriteria(data).toJSON()
     }
+
     post("/addHotel") { req, res ->
         val data = req.body().to<model.Hotel>()
         HotelService(req).addHotel(data).toJSON()
     }
+
     post("/addHotelChain") { req, res ->
         val data = req.body().to<model.HotelChain>()
         HotelService(req).addHotelChain(data).toJSON()
     }
+
     post("/addRoom") { req, res ->
         val data = req.body().to<model.Room>()
         HotelService(req).addRoom(data).toJSON()
     }
+
+    get("/search") { req, res ->
+        val data = req.map<String, Any>()
+        val rooms = HotelService(req).search(
+            data["name"] as String?,
+            data["startTime"] as Long?,
+            data["endTime"] as Long?,
+            data["city"] as String?,
+            data["province"] as String?,
+            (data["category"] as Double?)?.toInt()
+        )
+        Response(rooms).toJSON()
+    }
+    post("/deleteHotel/:id") { req, res ->
+        val id = req.params("id").toIntOrNull()
+        if (id == null) {
+            return@post Response(error = HotelsError("Could not find hotel id in url (/deleteHotel/:id)")).toJSON()
+        }
+        HotelService(req).deleteHotel(id).toJSON()
+    }
 }
+
 
 fun connection(): Connection {
     val cwd = System.getProperty("user.dir");

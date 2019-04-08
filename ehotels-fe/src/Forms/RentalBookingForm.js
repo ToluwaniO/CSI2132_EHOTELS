@@ -44,13 +44,40 @@ class RentalBookingForm extends React.Component{
             "\"startDate\":\""+startDate+"\","+
             "\"endDate\":\""+endDate+"\","+
             "\"customerSIN\":\""+customerSIN+"\"}"
-        console.log(obj)
+        console.log(obj);
+        const data = {};
+        data.bookingID = bookingId;
+        data.hotelID = hotelID;
+        data.roomNumber = roomNumber;
+        data.startDate = new Date(startDate).getTime();
+        data.endDate = new Date(endDate).getTime();
+        data.customerSIN = customerSIN;
+
+        fetch("http://localhost:4567/bookRoom", {
+            method:"POST",
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                return response.json()
+            }, err => {
+                console.log(err);
+            })
+            .then(data => {
+                if (data.error) {
+                    alert("An error occurred")
+                } else {
+                    alert("Booking successful")
+                }
+                console.log(data)
+            });
+
         console.log(this.props.service)
         // const xhr = new XMLHttpRequest()
         // xhr.open('POST', '/server', true)
         // xhr.send(obj)
     }
     render(){
+        console.log(this.props.location.state)
         let button;
         let div;
         let div1;
@@ -82,20 +109,20 @@ class RentalBookingForm extends React.Component{
         }
 
         else {
-            if(this.props.location.state.id === undefined){
+            if(this.props.location.state.roomNumber === undefined){
                 roomNumberDiv = <div>
                                     Room Number: <input type={"text"} id={"roomNumber"}/><br/>
                                 </div>
                 hotelIdDiv =   <div>
-                                Hotel Id: <input type={"text"} id={"hotelID"}/>
+                                Hotel Id: <input type={"text"} id={"hotelID"} value={this.props.location.state.hotelID}/>
                                 <br/>
                                 </div>
             }else {
                 roomNumberDiv = <div>
-                                    Room Number: <input type={"text"} id={"roomNumber"} value={this.props.location.state.id} readOnly/><br/>
+                                    Room Number: <input type={"text"} id={"roomNumber"} value={this.props.location.state.roomNumber} readOnly/><br/>
                                  </div>
                 hotelIdDiv =   <div>
-                                 Hotel Id: <input type={"text"} id={"hotelID"} value={this.props.location.state.hotelId} readOnly/>
+                                 Hotel Id: <input type={"text"} id={"hotelID"} value={this.props.location.state.hotelID} readOnly/>
                                  <br/>
                                 </div>
             }

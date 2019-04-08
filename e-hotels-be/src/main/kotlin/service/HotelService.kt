@@ -70,9 +70,9 @@ class HotelService(val req: Request) {
     }
 
     fun bookRoom(map: model.Booking): Response {
-        if (!AuthService(req).isSignedIn(map.customerSIN)) {
-            return Response(error = HotelsError("This user is not signed in"))
-        }
+//        if (!AuthService(req).isSignedIn(map.customerSIN)) {
+//            return Response(error = HotelsError("This user is not signed in"))
+//        }
         val availableRooms = roomsAvailable(map.hotelID, map.startTime, map.endTime).toHashSet()
         val room = query {
             val rooms =  Room.select {
@@ -202,10 +202,26 @@ class HotelService(val req: Request) {
                 val room = it.to<model.Room>(listOf(Room))
                 !bookings.contains(room.hotelID to room.roomNumber)
             }.map {
-                it.to<model.Room>(listOf(Room))
+                val rm = it.to<model.Room>(listOf(Room))
+                    rm.hotelName = hotelName(rm.hotelID)
+                    rm
             }.toList()
         }
         return rooms ?: emptyList()
+    }
+
+    fun hotelName(id: Int): String? {
+        return query<String?> {
+            val hs = Hotel.select {
+                Hotel.id eq id
+            }.limit(1).toList().map {
+                it.to<model.Hotel>(listOf(Hotel))
+            }.toList()
+            if (hs.isEmpty()) {
+                return@query null
+            }
+            return@query hs[0].name
+        }
     }
 
     fun addHotel(hotel: model.Hotel, addId: Boolean = false): Response {

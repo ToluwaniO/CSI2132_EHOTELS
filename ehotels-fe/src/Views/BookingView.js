@@ -48,11 +48,11 @@ function BookingItem(props) {
 
                             <h3 className="ui left floated header">
                                 Check In
-                                <div className="sub header">{props.data.startTime}</div>
+                                <div className="sub header">{(new Date(props.data.startTime).toDateString())}</div>
                             </h3>
                             <h3 className="ui right floated header">
                                 Check Out
-                                <div className="sub header">{props.data.endTime}</div>
+                                <div className="sub header">{(new Date(props.data.endTime).toDateString())}</div>
                             </h3>
 
                         </div>
@@ -90,7 +90,9 @@ class BookingView extends React.Component{
                 "customerSIN":"887"
         }],hotels:[]}
         this.search=this.search.bind(this)
+        // this.rent = this.rent.bind(this);
         this.getHotels=this.getHotels.bind(this)
+        // props.rent=this.rent();
 
 
     }
@@ -99,6 +101,22 @@ class BookingView extends React.Component{
         this.search("","")
         this.getHotels()
     }
+
+    // rent() {
+    //     const data = this.state.data[0];
+    //     data.employeeID = "000000001";
+    //     console.log(data);
+    //     fetch("http://localhost:4567/bookingToRental", {
+    //         method: "POST",
+    //         body:data
+    //     }).then((response) => {
+    //         return response.json()
+    //     }, (error) => {
+    //         console.log(error)
+    //     }).then((data) => {
+    //         console.log(data)
+    //     })
+    // }
 
     search(customerSIN,bookingId){
         let url = "http://localhost:4567/findBooking";
@@ -119,7 +137,7 @@ class BookingView extends React.Component{
         .then((data) => {
             console.log(data);
             const d = JSON.parse(data).data;
-            this.setState({ d })
+            this.setState({ data:d })
         });
     }
 

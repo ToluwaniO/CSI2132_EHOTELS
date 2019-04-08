@@ -49,16 +49,21 @@ class CustomerForm extends React.Component{
         // data.city = city;
         data.province = province;
         data.postalCode = postalCode;
-        console.log(data)
-        console.log(this.props.service)
-        const xhr = new XMLHttpRequest()
-        xhr.open('POST', 'http://localhost:4567/signUp', true)
-        xhr.onload = function(e) {
-            console.log(xhr.responseText)
-            console.log(xhr.statusText)
-            alert("Customer added");
-        }
-        xhr.send(JSON.stringify(data))
+        console.log(data);
+        console.log(this.props.service);
+        fetch('http://localhost:4567/signUp', {
+            method: "POST",
+            body:JSON.stringify(data)
+        }).then((response) => response.json(), (err)=> {
+            console.error(err)
+        }).then((data) => {
+            console.log(data);
+            if (data.error) {
+                alert("Could not create user")
+            } else {
+                alert("User created successfully")
+            }
+        })
         //  need to find right way of sending request
     }
     render(){

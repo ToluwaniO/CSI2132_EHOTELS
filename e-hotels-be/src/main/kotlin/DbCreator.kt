@@ -13,6 +13,7 @@ class DbCreator {
     private val rand = Random()
 
     fun createDb(connection: Connection) = transaction(Connection.TRANSACTION_SERIALIZABLE, 1) {
+        addLogger(StdOutSqlLogger)
         val data = getDummyData()
         SchemaUtils.create(HotelChain, Hotel, HotelChainAddress, HotelChainEmail, Employee, Customer, Room,
              Rental, Booking, Damage)

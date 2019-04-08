@@ -8,16 +8,6 @@ import spark.QueryParamsMap
 import spark.Request
 import java.sql.Connection
 
-//fun Customer.toMap() = mapOf<String, Any>(
-//    "SIN" to SIN.name,
-//    "email" to email.name,
-//    "name" to name.name,
-//    "registrationDate" to registrationDate.name,
-//    "email" to email.name,
-//    "email" to email.name,
-//    "email" to email.name,
-//    "email" to email.name,
-//)
 
 fun <K, V> Request.get(key: K, mapName: String? = null): V? {
     return map<K, V>()[key]
